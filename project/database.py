@@ -9,6 +9,12 @@ DATA_FIELDS = [
     'address_city',
     'address_state',
     'zip_code',
+    'classification',
+    'pay_method',
+    'salary',
+    'hourly',
+    'routing_number',
+    'account_number',
 ]
 
 class EmployeeDatabase:
@@ -31,9 +37,12 @@ class EmployeeDatabase:
 class Employee:
 
     def __init__(self, e_id):
-        self.id = e_id
+        self.id = e_id # do **NOT** set this in any other place
         for field in DATA_FIELDS:
             setattr(self, field, '')
 
     def get_full_name(self):
         return self.name_last + ', ' + self.name_first
+    
+    def get_id(self):
+        return self.id
