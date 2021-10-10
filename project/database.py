@@ -52,6 +52,8 @@ class EmployeeDatabase:
     
     def get_employee_data(self, e_id, field):
         return getattr(self.employees[e_id], field)
+    
+    # TODO: implement searching by name
 
 class Employee:
 
