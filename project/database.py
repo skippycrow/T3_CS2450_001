@@ -1,5 +1,7 @@
 import csv
 
+# needs some way to differentiate what fields are accessible by each access level
+# might be here, might be elsewhere
 DATA_FIELDS = [
     'name_first',
     'name_last',
@@ -23,9 +25,11 @@ class EmployeeDatabase:
         self.employees = {}
 
     def save_to_file(self, path):
+        # open csv, save data
         pass
 
     def load_from_file(self, path):
+        # open csv, load data, create Employee for each
         pass
 
     def create_employee(self, e_id, override_existing = False):
@@ -33,6 +37,21 @@ class EmployeeDatabase:
             print('id found in db')
         else:
             self.employees[e_id] = Employee(e_id)
+            return self.employees[e_id]
+    
+    def get_employee(self, e_id):
+        if e_id in self.employees:
+            return self.employees[e_id]
+        print('id not found')
+    
+    def erase_employee(self, e_id):
+        self.employees.pop(e_id)
+    
+    def set_employee_data(self, e_id, field, value):
+        setattr(self.employees[e_id], field, value)
+    
+    def get_employee_data(self, e_id, field):
+        return getattr(self.employees[e_id], field)
 
 class Employee:
 
