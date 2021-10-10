@@ -37,7 +37,12 @@ class EmployeeApp(tk.Tk):
 
 #TODO
 #Search results function
+#Select employee function
 #have the result box be populated by employee class
+#Buttons right now do not push to next frame.
+#Search button doesn't utilize the database
+#Clicking on the employee doesn't select employee.
+
 
 class EmployeeList(tk.Frame):
     def __init__(self, parent, controller):
@@ -49,7 +54,7 @@ class EmployeeList(tk.Frame):
         self.searchButton = tk.Button(self, text = "Search", width = 20, bg = "white", command = self.searchEmployee)
         self.searchButton.grid(row= 2, column = 0, sticky = tk.NE)
         #
-        self.search_Results = ["John Morgan", "Matt Morgan"]
+        self.search_Results = ["John Morgan        #91423", "Spencer Crow       #83523"]
         self.resultBox = tk.Listbox(self, width = 100, bg = "white")
         self.resultBox.grid(row=3, column =0, sticky = tk.NW)
         self.selectedEmployee = None
