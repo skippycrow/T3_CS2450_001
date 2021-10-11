@@ -36,14 +36,24 @@ class EditEmployee:
         edit_account_number_entry = Entry().grid(row=9, column=1)
         edit_payment_method_label = Label(root, text="Pay Method:").grid(row=10, column=0, pady=5, sticky="W")
         edit_payment_method_entry = Entry().grid(row=10, column=1)
-        submit_button = ttk.Button(text="Submit", style="S.TButton").grid(row=11, column=1, pady=15)
+        submit_button = ttk.Button(text="Submit", style="S.TButton", command = self.save_info).grid(row=11, column=1, pady=15)
         cancel_button = ttk.Button(text="Cancel", style="C.TButton", command=root.destroy).grid(row=11, column=0)
 
         root.mainloop()
 
     def save_info(self):
         """Save the new Employee in the database using the database functions"""
-        pass
+        popup = Tk()
+        popup.wm_title("Saved")
+        label = Label(popup, text="Employee data will be saved")
+        label.pack(side="top", fill="x", pady=10)
+        B1 = Button(popup, text="Okay", command = popup.destroy)
+        B1.pack()
+        popup.mainloop()
+        #todo
+        #Save data to database
+        #Return to previous frame
+
 
     def check_permission(self, id):
         """returns true if logged in employee matches profile id#
