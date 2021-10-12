@@ -1,7 +1,10 @@
+from tkinter import *
+from tkinter.ttk import *
 from database import Employee
 from database import EmployeeDatabase
 
-def pay_report(user, search):
+#TODO: pay_report_frame
+def pay_report(user, search, root):
 	"""
 	Description
 	-----------
@@ -13,6 +16,8 @@ def pay_report(user, search):
 		The user running the application.
 	search : Employee
 		The employee who's information is being accessed
+	root : Tk
+		Window to display
 	"""
 	# Check user information and permissions
 	if(CheckPermissions()):
@@ -102,9 +107,45 @@ def calculate_pay(search):
 	Returns
 	-------
 	decimal
-		Pay ammount
+		Pay amount
 	"""
 	#hours = 40 if search.hours > 40 else search.hours
 	#rate = search.rate
 	#return hours * rate
 	pass
+
+def calculate_total_income(search):
+	"""
+	Description
+	-----------
+	Sum of employee pay and employee overtime pay
+
+	Parameters
+	----------
+	search : Employee
+		The employee who's information is being accessed
+
+	Returns
+	-------
+	decimal
+		Total income
+	"""
+	return calculate_pay(search) + calculate_overtime_pay(search)
+
+def calculate_total_pay(search):
+	"""
+	Description
+	-----------
+	Apply deductions to total employee income
+
+	Parameters
+	search : Employee
+		The employee who's information is being accessed
+
+	Returns
+	-------
+	decimal
+		Total income - deductions
+	"""
+	return calculate_total_pay(search) - calculate_deductions(search)
+
