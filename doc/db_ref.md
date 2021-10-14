@@ -42,3 +42,33 @@
 * `get_full_name()`
 
     returns the Employee's full name, in "last, first" format
+
+Data Fields:
+
+* `name_first`
+
+* `name_last`
+
+* `contact_phone`
+
+* `contact_email`
+
+* `address_street`
+
+* `address_city`
+
+* `address_state`
+
+* `zip_code`
+
+* `classification`
+
+* `pay_method`
+
+* `salary`
+
+* `hourly`
+
+* `routing_number`
+
+* `account_number`
