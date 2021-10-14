@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox as msgBox
+from tkinter import messagebox as msg
 import csv
 
 class EmployeeApp(tk.Tk):
@@ -7,41 +7,50 @@ class EmployeeApp(tk.Tk):
         #Initialize tk
         tk.Tk.__init__(self)
         
-        #Initialize container options
+        #Initialize container
         container = tk.Frame(self)
         container.pack(side = "top", fill = "both", expand = True)
         container.grid_rowconfigure(0, weight = 1)
         container.grid_columnconfigure(0, weight = 1)
 
-        #Initialize list to hold frames
+        #Initialize dict to hold frames
         self.frames = {}
+
+        #Initialize dict to store data - Store user, permission, current employee etc. here where it can be accessed by other frames if it needs to
+        #Example: add_data("LandingPage_Permission", "Admin")
+        self.app_data = {}
 
         #For each page
         for page in (LandingPage, LoginPage, EmployeeList, AddEmployee, EditEmployee, EmployeeProfile):
-            #Initialize frame values
+            #Set page name to name of its class
             page_name = page.__name__
 
-            if page_name == "LoginPage":
-                frame = page(parent = container, controller = self, landingPage = self.frames["LandingPage"])
-            else:
-                frame = page(parent = container, controller = self)
+            #Create frame
+            frame = page(parent = container, controller = self)
 
+            #Store frame in frames dict
             self.frames[page_name] = frame
 
-            #Stack each frame in same grid cell
+            #Stack each frame on top of each other
             frame.grid(row = 0, column = 0, sticky = "nesw")
 
         #Show the login page
         self.present_frame("LoginPage")
 
+    def add_data(self, frame_subj, data):
+        self.app_data[frame_subj] = data
+
+    def remove_data(self, frame_subj):
+        del self.app_data[frame_subj]
+
     def present_frame(self, page_name):
         #Set the frame
         frame = self.frames[page_name]
-        #Raise the frame to top of list
+        #Raise the frame on top of the others
         frame.tkraise()
 
 class LoginPage(tk.Frame):
-    def __init__(self, parent, controller, landingPage):
+    def __init__(self, parent, controller):
         #username and password text boxes plus labels, save inputs to variables for future use
         #Set up the frame and create all buttons
 
@@ -51,36 +60,36 @@ class LoginPage(tk.Frame):
         #Initialize controller
         self.controller = controller
 
-        usernameLabel = tk.Label(self, text = "User Name").grid(row=3, column = 3)
-        username = tk.StringVar()
-        usernameInput = tk.Entry(self, textvariable = username).grid(row = 3, column = 4)
-        passwordLabel = tk.Label(self, text = "Password").grid(row = 3, column = 7)
-        password = tk.StringVar()
-        passwordInput = tk.Entry(self, textvariable = password, show = '*').grid(row = 3, column = 8)
+        username_label = tk.Label(self, text = "User Name").grid(row=3, column = 3)
+        self.username = tk.StringVar()
+        username_input = tk.Entry(self, textvariable = self.username).grid(row = 3, column = 4)
+        password_label = tk.Label(self, text = "Password").grid(row = 3, column = 7)
+        self.password = tk.StringVar()
+        password_input = tk.Entry(self, textvariable = self.password, show = '*').grid(row = 3, column = 8)
         
-        #add login button, calls checkLogin
-        loginButton = tk.Button(self, text = "Login", command = lambda: controller.present_frame("LandingPage")).grid(row = 8, column = 5)
-        
-    #Will call up a warning box if the credentials are invalid
-    def failLogin(self):
-         msgBox.showwarning(title="Failed Login", message="Incorrect Username or Password")
-         
-    #Will call to remove the Frame
-    def removeLogin(self):
-        pass
-        
+        #Add login button, calls checkLogin
+        login_button = tk.Button(self, text = "Login", command = self.check_login).grid(row = 8, column = 5)
+
     #Inputs will be passed in here to verify validity
     #Will finish implementation when username and password csv are completed
-    def checkLogin(self, username, password):
-       #placeholder for veryifying the user and password
-       #results = checkCredential(username, password)
-       #if results is true:
-       #LandingPage.makePage(self)
-       #loginPage.removeLogin()
-       #else:
+    def check_login(self):
+        #placeholder for veryifying the user and password
+        #results = checkCredential(self.username, self.password)
+        #if results is true:
+        self.controller.present_frame("LandingPage")
+        #loginPage.removeLogin()
+        #else:
          
         #self.failLogin()
         return
+        
+    #Will call up a warning box if the credentials are invalid
+    def fail_login(self):
+         msg.showwarning(title="Failed Login", message="Incorrect Username or Password")
+         
+    #Will call to remove the Frame
+    def remove_login(self):
+        pass
 
 class LandingPage(tk.Frame):
     #Constructor class
@@ -91,44 +100,40 @@ class LandingPage(tk.Frame):
         #Initialize controller
         self.controller = controller
 
-        self.userID = None
-        self.loginCommand = None
+        self.user_id = None
+        self.login_command = None
         
         #Set the format of the buttons and all of their locations
-        logoutButton = tk.Button(self, text = "Logout", command = lambda: controller.present_frame("LoginPage"))
-        logoutButton.grid(row = 5, column = 3)
-        profileButton = tk.Button(self, text = "Go to Profile", command = lambda: controller.present_frame("EmployeeProfile"))
-        profileButton.grid(row = 2, column = 0)
-        employeeButton = tk.Button(self, text ="Go to Employee Page", command = lambda: controller.present_frame("EmployeeList"))
-        employeeButton.grid(row = 2, column = 5)
+        logout_button = tk.Button(self, text = "Logout", command = lambda: controller.present_frame("LoginPage"))
+        logout_button.grid(row = 5, column = 3)
+        profile_button = tk.Button(self, text = "Go to Profile", command = lambda: controller.present_frame("EmployeeProfile"))
+        profile_button.grid(row = 2, column = 0)
+        employee_button = tk.Button(self, text ="Go to Employee Page", command = lambda: controller.present_frame("EmployeeList"))
+        employee_button.grid(row = 2, column = 5)
 
-    def setUserID(self, id):
-        self.userID = id
+    def set_user_id(self, id):
+        self.user_id = id
 
-    def setLoginCommand(self, command):
-        self.loginCommand = command
+    def set_login_command(self, command):
+        self.login_command = command
     
     #Once implemented this command will take the user to his personal profile
     #Currently unavailable
-    def onProfileClicked(self):
+    def on_profile_clicked(self):
         return
     
     #Once implemented this command will take a user with higher permission to a list of Employees page
     #Currently unavailable
-    def onEmployeeClicked(self):
+    def on_employee_clicked(self):
         return
     
-    #Construct the frame
-    def makePage(self):
-        self.frame.grid()
-    
     #This command will return the user to the login page and remove the current frame
-    def onLogoutClicked(self):
-        self.removePage()
-        self.loginCommand()
+    def on_logout_clicked(self):
+        self.remove_page()
+        self.login_command()
         
     #Command to remove frame
-    def removePage(self):
+    def remove_page(self):
         self.frame.grid_forget()
 
 class EmployeeList(tk.Frame):
@@ -139,40 +144,40 @@ class EmployeeList(tk.Frame):
 
         #self.employees_database = employees_database
         tk.Label(self, text = "Search Employee ", fg = "black", font = "none 12 bold").grid(row = 1, column = 0, sticky = tk.W)
-        self.searchBox = tk.Entry(self, width = 73, bg = "white").grid(row=2, column =0, sticky = tk.NW)
-        self.searchButton = tk.Button(self, text = "Search", width = 20, bg = "white", command = self.searchEmployee)
-        self.searchButton.grid(row= 2, column = 0, sticky = tk.NE)
+        self.search_box = tk.Entry(self, width = 73, bg = "white").grid(row=2, column =0, sticky = tk.NW)
+        self.search_button = tk.Button(self, text = "Search", width = 20, bg = "white", command = self.search_employee)
+        self.search_button.grid(row= 2, column = 0, sticky = tk.NE)
         
-        self.search_Results = ["John Morgan        #91423", "Spencer Crow       #83523"]
-        self.resultBox = tk.Listbox(self, width = 100, bg = "white")
-        self.resultBox.grid(row=3, column =0, sticky = tk.NW)
-        self.selectedEmployee = None
+        self.search_results = ["John Morgan        #91423", "Spencer Crow       #83523"]
+        self.result_box = tk.Listbox(self, width = 100, bg = "white")
+        self.result_box.grid(row=3, column =0, sticky = tk.NW)
+        self.selected_employee = None
         
         #populate the search Results
-        for item in self.search_Results:
-            self.resultBox.insert(tk.END, item)
+        for item in self.search_results:
+            self.result_box.insert(tk.END, item)
         #event handler for when clicked. selectEmployee()
-        self.resultBox.bind("<<ListboxSelect>>", self.selectEmployee)
+        self.result_box.bind("<<ListboxSelect>>", self.select_employee)
         
-        self.addEmployeeButton = tk.Button(self, text = "Add Employee", width = 20, bg = "white", command = lambda: controller.present_frame("AddEmployee"))
-        self.addEmployeeButton.grid(row=4, column= 0, sticky = tk.NW)
+        self.add_employee_button = tk.Button(self, text = "Add Employee", width = 20, bg = "white", command = lambda: controller.present_frame("AddEmployee"))
+        self.add_employee_button.grid(row=4, column= 0, sticky = tk.NW)
         
-        self.editEmployeeButton = tk.Button(self, text = "Edit Employee", width = 20, bg = "white", command = lambda: controller.present_frame("EditEmployee"))
-        self.editEmployeeButton.grid(row=5, column= 0, sticky = tk.NW)
+        self.edit_employee_button = tk.Button(self, text = "Edit Employee", width = 20, bg = "white", command = lambda: controller.present_frame("EditEmployee"))
+        self.edit_employee_button.grid(row=5, column= 0, sticky = tk.NW)
 
-        self.payrollButton = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = lambda: controller.preset_frame("payrollFrame"))
-        self.payrollButton.grid(row=4, column= 0, sticky = tk.E)
+        self.payroll_button = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = lambda: controller.preset_frame("payrollFrame"))
+        self.payroll_button.grid(row=4, column= 0, sticky = tk.E)
 
-        self.exportEmployeeButton = tk.Button(self, text = "Export Employee", width = 20, bg = "white", command = lambda: controller.present_frame("exportEmployee"))
-        self.exportEmployeeButton.grid(row=5, column= 0, sticky = tk.E)
+        self.export_employee_button = tk.Button(self, text = "Export Employee", width = 20, bg = "white", command = lambda: controller.present_frame("exportEmployee"))
+        self.export_employee_button.grid(row=5, column= 0, sticky = tk.E)
 
         
         #copys the selected employee to selectedEmployee
-    def selectEmployee(self, event):
-        self.selectedEmployee = self.resultBox.get(tk.ACTIVE)
-        print(self.selectedEmployee)
+    def select_employee(self, event):
+        self.selected_employee = self.result_box.get(tk.ACTIVE)
+        print(self.selected_employee)
         
-    def searchEmployee(self):
+    def search_employee(self):
         pass
 
 class AddEmployee(tk.Frame):
@@ -293,11 +298,11 @@ class EmployeeProfile(tk.Frame):
 
         if self.check_permission(23): #the logged-in employee's number will be passed in
             tk.Label(self, text='<<Other employee info>>').grid(row=6, column=0, sticky=tk.W)
-            tk.Button(self, text="Edit Employee", command=self.standIn).grid(column=1, row=10)
+            tk.Button(self, text="Edit Employee", command=self.stand_in).grid(column=1, row=10)
 
         tk.Button(self, text="Back", command = lambda: controller.present_frame("LandingPage")).grid(column=2, row=10)
     
-    def standIn():
+    def stand_in():
         pass
 
     def check_permission(self, id):
