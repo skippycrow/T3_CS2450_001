@@ -1,24 +1,25 @@
-# import csv
+import csv
+from hashlib import md5
 
 PASSWORD_CORRECT = 0
 PASSWORD_INCORRECT = 1
 ID_NOT_FOUND = 2
 
-passwords = {} # populate with data
-                    # should passwords be stored in plaintext, or as a hash?
-                    # plaintext is a terrible idea in serious applications
+passwords = {} 
 
 def read_auth_data(path):
     global passwords
-    print(passwords)
-    # read from csv
+    with open(path, mode='r') as csv_file:
+        reader = csv.DictReader(csv_file)
+        for row in reader:
+            passwords[row['id']] = row['pw_hash']
 
 
 def verify_password(_id, _pass):
     global passwords
     if not _id in passwords:
         return ID_NOT_FOUND
-    elif passwords[_id] == _pass: # todo: maybe hash the _pass
+    elif passwords[_id] == md5(_pass.encode()).hexdigest(): # store MD5 checksum of password
         return PASSWORD_CORRECT
     else:
         return PASSWORD_INCORRECT
