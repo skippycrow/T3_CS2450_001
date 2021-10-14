@@ -2,11 +2,11 @@
 
 * `save_to_file(path)`
     
-    Saves the `employees` dictionary into a csv at the specified `path` (not yet implemented)
+    Saves the `employees` dictionary into a csv at the specified `path`.
 
 * `load_from_file(path)`
     
-    Loads the csv file at the specified `path` and adds Employee objects for each row (not yet implemented)
+    Loads the csv file at the specified `path` and adds Employee objects for each row.
 
 * `create_employee(e_id, override_existing = False)`
     

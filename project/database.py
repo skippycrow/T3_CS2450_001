@@ -25,12 +25,24 @@ class EmployeeDatabase:
         self.employees = {}
 
     def save_to_file(self, path):
-        # open csv, save data
-        pass
+        with open(path, mode='w') as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames = ['id'] + DATA_FIELDS)
+            writer.writeheader()
+            for e_id, e in self.employees.items():
+                row = {}
+                row['id'] = e_id
+                for field in DATA_FIELDS:
+                    row[field] = getattr(e, field)
+                writer.writerow(row)
 
     def load_from_file(self, path):
-        # open csv, load data, create Employee for each
-        pass
+        with open(path, mode='r') as csv_file:
+            reader = csv.DictReader(csv_file)
+            for row in reader:
+                e = self.create_employee(row['id'])
+                for field in DATA_FIELDS:
+                    if field in row:
+                        setattr(e, field, row[field])
 
     def create_employee(self, e_id, override_existing = False):
         if e_id in self.employees and not override_existing:
