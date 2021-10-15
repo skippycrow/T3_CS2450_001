@@ -3,8 +3,34 @@ from tkinter.ttk import *
 from database import Employee
 from database import EmployeeDatabase
 
+class PayReport(Frame):
+	def __init__(self, master=None):
+		Frame.__init__(self, master)
+		self.grid()
+
+		self.page_title = Label(self, text='<page name>')
+
+		#Employee Information
+		self.section_employee = Label(self, text='Employee Info')
+		self.head_name = Label(self, text='Name:')
+		self.head_id = Label(self, text='ID:')
+		self.head_address = Label(self, text='Address:')
+
+		#Bank Information
+
+		#Employee Pay
+		self.head_rate = Label(self, text='Rate:')
+		self.head_hours = Label(self, text='Hours:')
+		self.head_pay = Label(self, text='Pay:')
+		self.head_overtime_pay = Label(self, text='Overtime Pay:')
+		self.head_total = Label(self, text='Total Pay')
+
+app = PayReport()
+app.mainloop()
+
+
 #TODO: pay_report_frame
-def pay_report(user, search, root):
+def pay_report(user = Employee(), search = Employee(), root = Tk()):
 	"""
 	Description
 	-----------
@@ -20,7 +46,7 @@ def pay_report(user, search, root):
 		Window to display
 	"""
 	# Check user information and permissions
-	if(CheckPermissions()):
+	if(allow_access(user, search)):
 		#TODO: Show searched employee payreport
 		pass
 	else:
