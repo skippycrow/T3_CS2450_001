@@ -8,6 +8,8 @@ class PayReport(Frame):
 		Frame.__init__(self, master)
 		self.grid()
 
+		row, col = 0, 0
+		#Page Title
 		self.page_title = Label(self, text='<page name>')
 
 		#Employee Information
@@ -17,13 +19,31 @@ class PayReport(Frame):
 		self.head_address = Label(self, text='Address:')
 
 		#Bank Information
+		self.section_bank = Label(self, text='Bank Information')
+		self.head_routing_number = Label(self, text='Routing Number:')
+		self.head_account_number = Label(self, text='Account Number:')
 
 		#Employee Pay
+		self.section_pay = Label(self, text='Employee Pay')
 		self.head_rate = Label(self, text='Rate:')
 		self.head_hours = Label(self, text='Hours:')
 		self.head_pay = Label(self, text='Pay:')
 		self.head_overtime_pay = Label(self, text='Overtime Pay:')
-		self.head_total = Label(self, text='Total Pay')
+		self.head_total_pay = Label(self, text='Total Pay')
+
+		#Deductions
+		self.section_deductions = Label(self, text='Deductions')
+		self.head_deductions = []
+		self.head_total_deductiosn = Label(self, text='Total Deductions:')
+		
+		#Taxes
+		self.section_taxes = Label(self, text='Taxes')
+		self.head_taxes = []
+		self.head_total_taxes = Label(self, text='Total Taxes:')
+
+		#Net Pay
+		self.head_net_pay = Label(self, text='Net Pay:')
+
 
 app = PayReport()
 app.mainloop()
