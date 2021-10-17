@@ -7,7 +7,6 @@ class PayReport(Frame):
 	def __init__(self, master=None):
 		Frame.__init__(self, master)
 		self.grid()
-
 		row, col = 0, 0
 		#Page Title
 		self.page_title = Label(self, text='<page name>')
@@ -44,13 +43,53 @@ class PayReport(Frame):
 		#Net Pay
 		self.head_net_pay = Label(self, text='Net Pay:')
 
+		#Place Elements
+
+		#Grid for element placement
+		page_space = [[None]*40 for _ in range(40)]
+
+		#Header Layout
+		page_layout = [
+			[self.page_title],
+			[self.section_employee],
+			[self.head_name],
+			[self.head_id],
+			[self.head_address],
+			[],
+			[self.section_bank],
+			[self.head_routing_number],
+			[self.head_account_number],
+			[],
+			]
+		#Header
+		yval = 0
+		for y in page_layout:
+			#print(y,"\n")
+			xval = 0
+			for x in y:
+				page_space[yval][xval] = page_layout[yval][xval]
+				xval += 1
+			yval += 1
+
+		yval = 0
+		for y in page_space:
+			#print(y,"\n")
+			xval = 0
+			for x in y:
+				if(x is not None):
+					x.grid(column=xval, row=yval)
+
+				xval += 1
+			yval += 1
+
+
 
 app = PayReport()
 app.mainloop()
 
 
 #TODO: pay_report_frame
-def pay_report(user = Employee(), search = Employee(), root = Tk()):
+def pay_report(user = Employee(12), search = Employee(12), root = Tk()):
 	"""
 	Description
 	-----------
