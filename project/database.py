@@ -46,7 +46,7 @@ class EmployeeDatabase:
 
     def create_employee(self, e_id, override_existing = False):
         if e_id in self.employees and not override_existing:
-            print('id found in db')
+            raise ValueError('Specified id is already present in database\nIf this is intended, pass in True for override_existing')
         else:
             self.employees[e_id] = Employee(e_id)
             return self.employees[e_id]
@@ -54,16 +54,28 @@ class EmployeeDatabase:
     def get_employee(self, e_id):
         if e_id in self.employees:
             return self.employees[e_id]
-        print('id not found')
+        else:
+            raise IndexError('id not found in employee database')
     
     def erase_employee(self, e_id):
-        self.employees.pop(e_id)
+        if e_id in self.employees:
+            self.employees.pop(e_id)
     
     def set_employee_data(self, e_id, field, value):
-        setattr(self.employees[e_id], field, value)
+        if not field in DATA_FIELDS:
+            raise AttributeError('specified field not found in DATA_FIELDS list')
+        elif not e_id in self.employees:
+            raise IndexError('id not found in employee database')
+        else:
+            setattr(self.employees[e_id], field, value)
     
     def get_employee_data(self, e_id, field):
-        return getattr(self.employees[e_id], field)
+        if not field in DATA_FIELDS:
+            raise AttributeError('specified field not found in DATA_FIELDS list')
+        elif not e_id in self.employees:
+            raise IndexError('id not found in employee database')
+        else:
+            return getattr(self.employees[e_id], field)
     
     # TODO: implement searching by name
 
@@ -79,3 +91,6 @@ class Employee:
     
     def get_id(self):
         return self.id
+
+    def set_id(self, new_id):
+        raise ValueError('Don\'t')
