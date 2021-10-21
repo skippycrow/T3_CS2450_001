@@ -1,10 +1,10 @@
 import tkinter as tk
-from LoginFrame import LoginFrame
-from LandingFrame import LandingFrame
-from EmployeeListFrame import EmployeeList
-from AddEmployeeFrame import AddEmployee
-from EditEmployeeFrame import EditEmployee
-from EmployeeProfileFrame import EmployeeProfile
+from Landing_Frame import LoginFrame
+from Landing_Frame import LandingFrame
+from Employee_List_Frame import EmployeeList
+from Add_Employee_Frame import AddEmployee
+from Edit_Employee_Frame import EditEmployee
+from Employee_Profile_Frame import EmployeeProfile
 
 class EmployeeApp(tk.Tk):
     def __init__(self):
