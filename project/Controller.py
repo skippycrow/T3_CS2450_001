@@ -1,5 +1,5 @@
 import tkinter as tk
-from Landing_Frame import LoginFrame
+from Login_Frame import LoginFrame
 from Landing_Frame import LandingFrame
 from Employee_List_Frame import EmployeeList
 from Add_Employee_Frame import AddEmployee
