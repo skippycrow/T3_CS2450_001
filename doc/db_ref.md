@@ -69,6 +69,8 @@ Data Fields:
 
 * `hourly`
 
+* `commission_rate`
+
 * `routing_number`
 
 * `account_number`
