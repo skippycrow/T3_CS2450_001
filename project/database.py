@@ -45,6 +45,9 @@ class EmployeeDatabase:
                         setattr(e, field, row[field])
 
     def create_employee(self, e_id, override_existing = False):
+        if not isinstance(e_id, str):
+            raise TypeError('ID should be a String')
+
         if e_id in self.employees and not override_existing:
             raise ValueError('Specified id is already present in database\nIf this is intended, pass in True for override_existing')
         else:
