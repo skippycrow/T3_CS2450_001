@@ -12,8 +12,9 @@ from tkinter import messagebox as msg
 class EmployeeList(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
+
         self.controller = controller
-        
+
         #self.employees_database = employees_database
         tk.Label(self, text = "Search Employee ", fg = "black", font = "none 12 bold").grid(row = 1, column = 0, sticky = tk.W)
         self.search_box = tk.Entry(self, width = 73, bg = "white").grid(row=2, column =0, sticky = tk.NW)
@@ -42,11 +43,11 @@ class EmployeeList(tk.Frame):
 
         self.export_employee_button = tk.Button(self, text = "Export Employee", width = 20, bg = "white", command = lambda: controller.present_frame("exportEmployee"))
         self.export_employee_button.grid(row=5, column= 0, sticky = tk.E)
-        
+      
         #copys the selected employee to selectedEmployee
-    def selectEmployee(self, event):
-        self.selectedEmployee = self.resultBox.get(tk.ACTIVE)
-        print(self.selectedEmployee)
+    def select_employee(self, event):
+        self.selected_employee = self.result_box.get(tk.ACTIVE)
+        print(self.selected_employee)
         
-    def searchEmployee(self):
+    def search_employee(self):
         pass
