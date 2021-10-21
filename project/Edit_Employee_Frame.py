@@ -30,7 +30,7 @@ class EditEmployee(tk.Frame):
         edit_payment_method_label = tk.Label(self, text="Pay Method:").grid(row=10, column=0, pady=5, sticky=tk.W)
         edit_payment_method_entry = tk.Entry(self, width = 15, bg = "white").grid(row=10, column=1)
         submit_button = tk.Button(self, text="Submit", command = self.save_info).grid(row=11, column=1, pady=15)
-        cancel_button = tk.Button(self, text="Cancel", command= self.save_info).grid(row=11, column=0)
+        cancel_button = tk.Button(self, text="Cancel", command = lambda: controller.present_frame("EmployeeList")).grid(row=11, column=0)
 
     def save_info(self):
         """Save the new Employee in the database using the database functions"""
