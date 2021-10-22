@@ -15,6 +15,7 @@ DATA_FIELDS = [
     'pay_method',
     'salary',
     'hourly',
+    'commission_rate',
     'routing_number',
     'account_number',
 ]
