@@ -21,8 +21,12 @@ DATA_FIELDS = [
 ]
 
 class EmployeeDatabase:
+    # Employee Database class
+    # Holds id and info for each employee
 
     def __init__(self):
+        # Dictionary of employees
+        # id as key, Employee object as value
         self.employees = {}
 
     def save_to_file(self, path):
@@ -84,6 +88,8 @@ class EmployeeDatabase:
     # TODO: implement searching by name
 
 class Employee:
+    # class for single Employee data
+    # should primarily be manmaged via containing EmployeeDatabase
 
     def __init__(self, e_id):
         self.id = e_id # do **NOT** set this in any other place
