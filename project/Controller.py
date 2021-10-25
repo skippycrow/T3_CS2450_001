@@ -6,11 +6,18 @@ from Add_Employee_Frame import AddEmployee
 from Edit_Employee_Frame import EditEmployee
 from Employee_Profile_Frame import EmployeeProfile
 
+from database import EmployeeDatabase
+
 class EmployeeApp(tk.Tk):
     def __init__(self):
         #Initialize tk
         tk.Tk.__init__(self)
         
+        # Initialize database
+        self.database = EmployeeDatabase()
+        # Load data?
+
+
         #Initialize container
         container = tk.Frame(self)
         container.pack(side = "top", fill = "both", expand = True)
