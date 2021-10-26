@@ -17,7 +17,15 @@ DATA_FIELDS = [
     'hourly',
     'commission_rate',
     'routing_number',
-    'account_number',
+    'Account',
+    'social_security',
+    'birthday',
+    'start_date',
+    'permission',
+    'title',
+    'dept',
+    'email',
+    'end_date',
 ]
 
 class EmployeeDatabase:
@@ -44,7 +52,7 @@ class EmployeeDatabase:
         with open(path, mode='r') as csv_file:
             reader = csv.DictReader(csv_file)
             for row in reader:
-                e = self.create_employee(row['id'])
+                e = self.create_employee(row['ID'])
                 for field in DATA_FIELDS:
                     if field in row:
                         setattr(e, field, row[field])
