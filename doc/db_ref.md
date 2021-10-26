@@ -73,4 +73,20 @@ Data Fields:
 
 * `routing_number`
 
-* `account_number`
+* `Account`
+
+* `social_security`
+
+* `birthday`
+
+* `start_date`
+
+* `permission`
+
+* `title`
+
+* `dept`
+
+* `email`
+
+* `end_date`
