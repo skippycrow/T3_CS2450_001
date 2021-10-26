@@ -38,6 +38,9 @@ class AddEmployee(tk.Frame):
         #todo
 
         #Save data to database
+        #(e = )self.controller.database.create_employee(<where does id come from?>)
+        # Set fields on e
+        #self.controller.database.set_employee_data()
 
         #Return to previous frame
         self.controller.present_frame("EmployeeList")

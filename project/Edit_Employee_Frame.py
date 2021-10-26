@@ -38,6 +38,8 @@ class EditEmployee(tk.Frame):
         #todo
 
         #Save data to database
+        #self.controller.database.set_employee_data()
+        # Do for each data field
 
         #Return to previous frame
         self.controller.present_frame("EmployeeList")
