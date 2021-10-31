@@ -14,7 +14,9 @@ class EmployeeList(tk.Frame):
         self.search_results = []
         self.selected_employee = None
         ### TODO: impmlement the employee database 
-        self.test_Dict = {"91423" : {"name_first" :"Jon", "name_last" : "Morgan" }, "83523" :{ "name_first" :"Spencer", "name_last" : "Crow"}}
+        self.test_Dict = self.controller.database.employees
+
+        #{"91423" : {"name_first" :"Jon", "name_last" : "Morgan" }, "83523" :{ "name_first" :"Spencer", "name_last" : "Crow"}}
         ###
 
         #Search Box
