@@ -143,6 +143,7 @@ class AddEmployee(tk.Frame):
         self.add_permission_label.grid(row=8, column=0, pady=5, sticky=tk.W)
         self.add_permission_entry = tk.OptionMenu(self, self.cur_perm, "Admin", "Employee")
         self.add_permission_entry.grid(row=8, column=1)
+        self.add_permission_entry.config(width=15)
 
         # Title
         self.add_title_label = tk.Label(self, text="Title:")
@@ -159,8 +160,11 @@ class AddEmployee(tk.Frame):
         # Buttons
         self.submit_button = tk.Button(self, text="Submit", command=self.save_info)
         self.submit_button.grid(row=11, column=1, pady=15)
-        self.cancel_button = tk.Button(self, text="Cancel", command=self.save_info)
+        self.cancel_button = tk.Button(self, text="Cancel", command=self.cancel)
         self.cancel_button.grid(row=11, column=0)
+
+    def cancel(self):
+        self.controller.present_frame("EmployeeList")
 
     def save_info(self):
         """Save the new Employee in the database using the database functions"""
