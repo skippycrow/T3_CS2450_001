@@ -20,7 +20,7 @@ class EmployeeApp(tk.Tk):
         if os.path.exists(os.getcwd() + "/Resources/employees.csv"):
             self.database.load_from_file(os.getcwd() + "/Resources/employees.csv")
         if os.path.exists(os.getcwd() + "/project/Resources/employees.csv"):
-            self.database.load_from_file(os.getcwd() + "project/Resources/employees.csv")
+            self.database.load_from_file(os.getcwd() + "/project/Resources/employees.csv")
         # Load data?
 
 
