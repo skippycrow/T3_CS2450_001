@@ -13,7 +13,7 @@ class LandingFrame(tk.Frame):
         #Initialize controller
         self.controller = controller
         self.login_command = None
-        self.user_id = self.controller.app_data["LoginFrame_id"]
+        self.user_id = self.controller.app_data["user_id"]
         
         #Set the format of the buttons and all of their locations
         logout_button = tk.Button(self, text = "Logout", command = lambda: controller.present_frame("LoginFrame"))

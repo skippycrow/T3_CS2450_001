@@ -19,7 +19,7 @@ class LoginFrame(tk.Frame):
         id_label = tk.Label(self, text = "Employee ID").grid(row=3, column = 3)
         self.e_id = tk.StringVar()
         e_id_input = tk.Entry(self, textvariable = self.e_id).grid(row = 3, column = 4)
-        self.controller.add_data("LoginFrame_id", self.e_id)
+        self.controller.add_data("user_id", self.e_id)
         password_label = tk.Label(self, text = "Password").grid(row = 3, column = 7)
         self.password = tk.StringVar()
         password_input = tk.Entry(self, textvariable = self.password, show = '*').grid(row = 3, column = 8)
