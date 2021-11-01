@@ -11,7 +11,7 @@ class EmployeeProfile(tk.Frame):
 
     
 
-        self.e_id = "688997"        #Will need to get id# from login or employee list
+        self.e_id = self.controller.app_data["selected_employee"]      #Will need to get id# from login or employee list
         self.name = self.controller.database.get_employee_data(self.e_id, "name_first") + " " + self.controller.database.get_employee_data(self.e_id, "name_last")
         self.title = "Employee"     #self.controller.database.get_employee_data(self.e_id, "title")
         self.dept = "Faculty"       #self.controller.database.get_employee_data(self.e_id, "dept")
