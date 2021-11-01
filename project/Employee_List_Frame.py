@@ -14,7 +14,7 @@ class EmployeeList(tk.Frame):
         self.search_results = []
         self.selected_employee = None
         ### TODO: impmlement the employee database 
-        self.test_Dict = {"91423" : {"name_first" :"Jon", "name_last" : "Morgan" }, "83523" :{ "name_first" :"Spencer", "name_last" : "Crow"}}
+        print(self.controller.database.employees)
         ###
 
         #Search Box
@@ -58,9 +58,9 @@ class EmployeeList(tk.Frame):
         #Search function
     def search_employee(self):
         self.search_results = []
-        for employeee in self.test_Dict:
-            empFirstName = self.test_Dict.get(employeee)["name_first"]
-            empLastName = self.test_Dict.get(employeee)["name_last"]
+        for employeee in self.controller.database.employees:
+            empFirstName = self.controller.database.get_employee_data(employeee, "name_first")
+            empLastName = self.controller.database.get_employee_data(employeee, "name_last")
             empNum = employeee
             if (self.search_box.get()).lower() in empNum:
                 self.search_results.append([empFirstName + ' ' + empLastName, empNum])                  
