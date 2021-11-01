@@ -183,12 +183,8 @@ class AddEmployee(tk.Frame):
         if self.pay_method.get() == "Mail":
             method = 2
 
-        # Done
-        # Save data to database
-        # (e = )self.controller.database.create_employee(<where does id come from?>)
-        # Set fields on e
-        # self.controller.database.set_employee_data()
-        e_id = self.controller.database.create_employee(self.add_emp_id_entry.get())
+        e_id = self.add_emp_id_entry.get()
+        e = self.controller.database.create_employee(e_id)
 
         self.controller.database.set_employee_data(e_id, 'name_first', self.add_first_name_entry.get())
         self.controller.database.set_employee_data(e_id, 'name_last', self.add_last_name_entry.get())
