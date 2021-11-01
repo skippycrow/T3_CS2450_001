@@ -32,6 +32,7 @@ class LandingFrame(tk.Frame):
 
     def set_login_command(self, command):
         self.login_command = command
+    
 
     #This command will take a user with higher permission to a list of Employees page
     def on_employee_clicked(self):

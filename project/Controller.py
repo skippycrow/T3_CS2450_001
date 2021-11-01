@@ -31,7 +31,7 @@ class EmployeeApp(tk.Tk):
 
         #Initialize dict to store data - Store user, permission, current employee etc. here where it can be accessed by other frames if it needs to
         #Example: add_data("LandingPage_Permission", "Admin")
-        self.app_data = {}
+        self.app_data = {"selected_employee": "522759"}
 
         #For each page
         for page in (LoginFrame, LandingFrame, EmployeeList, AddEmployee, EditEmployee, EmployeeProfile):
