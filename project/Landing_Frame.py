@@ -32,12 +32,6 @@ class LandingFrame(tk.Frame):
 
     def set_login_command(self, command):
         self.login_command = command
-    
-    #Once implemented this command will take the user to his personal profile
-    def on_profile_clicked(self):
-        #
-        if EmployeeProfile.check_permission(id) == true:
-            self.controller.present_frame("EmployeeProfile")
 
     #This command will take a user with higher permission to a list of Employees page
     def on_employee_clicked(self):
