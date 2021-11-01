@@ -29,6 +29,7 @@ class LoginFrame(tk.Frame):
 
     
     def check_login(self):
+        self.controller.present_frame("LandingFrame")
         """
         results = auth.verify_password(self.e_id, self.password)
         if results == auth.PASSWORD_CORRECT:
