@@ -18,10 +18,14 @@ class LandingFrame(tk.Frame):
         #Set the format of the buttons and all of their locations
         logout_button = tk.Button(self, text = "Logout", command = lambda: controller.present_frame("LoginFrame"))
         logout_button.grid(row = 5, column = 3)
-        profile_button = tk.Button(self, text = "Go to Profile", command = lambda: controller.present_frame("EmployeeProfile"))
+        profile_button = tk.Button(self, text = "Go to Profile", command = self.profile_click)
         profile_button.grid(row = 2, column = 0)
         employee_button = tk.Button(self, text ="Go to Employee Page", command = lambda: controller.present_frame("EmployeeList"))
         employee_button.grid(row = 2, column = 5)
+
+    def profile_click(self):
+        self.controller.app_data["selected_Employee"] = self.controller.app_data["user_id"]
+        self.controller.present_frame("EmployeeProfile")
 
     def set_user_id(self, id):
         self.user_id = id
