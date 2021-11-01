@@ -29,15 +29,18 @@ class LoginFrame(tk.Frame):
 
     
     def check_login(self):
+        self.controller.app_data["user_id"] = self.e_id;
         self.controller.present_frame("LandingFrame")
-        """
+
         results = auth.verify_password(self.e_id, self.password)
+        
         if results == auth.PASSWORD_CORRECT:
-            self.controller.present_frame("LandingFrame", ssef.e_id)
-            loginPage.removeLogin()
+            self.controller.app_data["user_id"] = self.e_id;
+            self.controller.present_frame("LandingFrame")
+
         else:
          self.failLogin()
-         """
+
         pass
         
     # Will call up a warning box if the credentials are invalid
