@@ -1,5 +1,6 @@
 import tkinter as tk
 import os
+import os.path
 from Login_Frame import LoginFrame
 from Landing_Frame import LandingFrame
 from Employee_List_Frame import EmployeeList
@@ -16,7 +17,10 @@ class EmployeeApp(tk.Tk):
         
         # Initialize database
         self.database = EmployeeDatabase()
-        self.database.load_from_file(os.getcwd() +"/project/Resources/employees.csv")
+        if os.path.exists(os.getcwd() + "/Resources/employees.csv"):
+            self.database.load_from_file(os.getcwd() + "/Resources/employees.csv")
+        if os.path.exists(os.getcwd() + "/project/Resources/employees.csv"):
+            self.database.load_from_file(os.getcwd() + "project/Resources/employees.csv")
         # Load data?
 
 
