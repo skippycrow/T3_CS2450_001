@@ -50,11 +50,11 @@ class EmployeeProfile(tk.Frame):
             tk.Label(self, text="Commission: " + self.commission).grid(row=9, column=3, sticky=tk.W)
             tk.Label(self, text="<<routing #, account #, and other data fields to be implemented").grid(row=10, column=0, sticky=tk.W)
 
-            tk.Button(self, text="Edit Employee", command=self.stand_in).grid(column=1, row=20)
+            tk.Button(self, text="Edit Employee", command=lambda: controller.present_frame("EditEmployee")).grid(column=1, row=20)
 
         tk.Button(self, text="Back", command = lambda: controller.present_frame("LandingFrame")).grid(column=2, row=20)
     
-    def stand_in():
+    def stand_in(self):
         pass
 
     def check_permission(self, id):
