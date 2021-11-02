@@ -32,7 +32,7 @@ class LoginFrame(tk.Frame):
         self.controller.app_data["user_id"] = self.e_id;
         self.controller.present_frame("LandingFrame")
 
-        results = auth.verify_password(self.e_id, self.password)
+        results = auth.verify_password(self.e_id.get(), self.password.get())
         
         if results == auth.PASSWORD_CORRECT:
             self.controller.app_data["user_id"] = self.e_id;
