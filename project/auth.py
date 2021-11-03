@@ -5,7 +5,7 @@ PASSWORD_CORRECT = 0
 PASSWORD_INCORRECT = 1
 ID_NOT_FOUND = 2
 
-passwords = {} 
+passwords = {}
 
 def read_auth_data(path):
     global passwords
@@ -18,9 +18,9 @@ def read_auth_data(path):
 def verify_password(_id, _pass):
     global passwords
     if not _id in passwords:
-        raise ValueError('ID not found in auth db')
         return ID_NOT_FOUND
-    elif passwords[_id] == md5(_pass.encode()).hexdigest(): # store MD5 checksum of password
+
+    if passwords[_id] == md5(_pass.encode()).hexdigest(): # store MD5 checksum of password
         return PASSWORD_CORRECT
-    else:
-        return PASSWORD_INCORRECT
+
+    return PASSWORD_INCORRECT

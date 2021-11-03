@@ -39,7 +39,7 @@ class LoginFrame(tk.Frame):
             self.controller.present_frame("LandingFrame")
 
         else:
-         self.failLogin()
+         self.fail_login()
 
         pass
         
