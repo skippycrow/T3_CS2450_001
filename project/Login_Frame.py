@@ -16,16 +16,18 @@ class LoginFrame(tk.Frame):
 
         # Initialize controller
         self.controller = controller
-        id_label = tk.Label(self, text = "Employee ID").grid(row=3, column = 3)
+
+        # Style frame
+        id_label = tk.Label(self, text = "Employee ID", font = "none 16 bold").grid(row=3, column = 3)
         self.e_id = tk.StringVar()
         e_id_input = tk.Entry(self, textvariable = self.e_id).grid(row = 3, column = 4)
         self.controller.add_data("user_id", self.e_id)
-        password_label = tk.Label(self, text = "Password").grid(row = 4, column = 3)
+        password_label = tk.Label(self, text = "Password", font = "none 16 bold").grid(row = 4, column = 3)
         self.password = tk.StringVar()
         password_input = tk.Entry(self, textvariable = self.password, show = '*').grid(row = 4, column = 4)
         
         # Add login button, calls checkLogin
-        login_button = tk.Button(self, text = "Login", command = self.check_login).grid(row = 5, column = 3)
+        login_button = tk.Button(self, text = "Login", width = 20, height = 1, command = self.check_login).grid(row = 5, column = 3)
 
     
     def check_login(self):
