@@ -37,6 +37,10 @@
         db.get_employee_data('12-345', 'contact_email') # gives 'person@website.tld'
     ```
 
+* `read_timecard_data(path)`
+
+* `read_receipt_data(path)`
+
 #### `Employee` class
 
 * `get_full_name()`

@@ -89,7 +89,7 @@ class EmployeeDatabase:
             self.employees.pop(e_id)
 
     def set_employee_data(self, e_id, field, value):
-        """sets field property of employrr with given id"""
+        """sets field property of employee with given id"""
 
         if not field in DATA_FIELDS:
             raise AttributeError('specified field not found in DATA_FIELDS list')
@@ -110,7 +110,30 @@ class EmployeeDatabase:
 
         return getattr(self.employees[e_id], field)
 
-    # TODO: implement searching by name
+    def read_timecard_data(self, path):
+        with open(path, mode='r') as csv_file:
+            reader = csv.reader(csv_file)
+            for row in reader:
+                idstr = row[0]
+                if not idstr in self.employees:
+                    print(f'ERROR: id {idstr} not found in database')
+                    continue
+
+                for i in range(1, len(row)):
+                    self.get_employee(idstr).timecard_data.append(float(row[i]))
+
+
+    def read_receipt_data(self, path):
+        with open(path, mode='r') as csv_file:
+            reader = csv.reader(csv_file)
+            for row in reader:
+                idstr = row[0]
+                if not idstr in self.employees:
+                    print(f'ERROR: id {idstr} not found in database')
+                    continue
+
+                for i in range(1, len(row)):
+                    self.get_employee(idstr).receipt_data.append(float(row[i]))
 
 class Employee:
     """class for single Employee data
@@ -120,6 +143,8 @@ class Employee:
         self.id = e_id # do **NOT** set this in any other place
         self.name_first = ''
         self.name_last = ''
+        self.timecard_data = []
+        self.receipt_data = []
         for field in DATA_FIELDS:
             setattr(self, field, '')
 
