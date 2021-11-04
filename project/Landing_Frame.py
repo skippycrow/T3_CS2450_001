@@ -16,12 +16,12 @@ class LandingFrame(tk.Frame):
         self.user_id = self.controller.app_data["user_id"]
         
         #Set the format of the buttons and all of their locations
-        logout_button = tk.Button(self, text = "Logout", command = lambda: controller.present_frame("LoginFrame"))
-        logout_button.grid(row = 5, column = 3)
-        profile_button = tk.Button(self, text = "Go to Profile", command = self.profile_click)
-        profile_button.grid(row = 2, column = 0)
-        employee_button = tk.Button(self, text ="Go to Employee Page", command = lambda: controller.present_frame("EmployeeList"))
-        employee_button.grid(row = 2, column = 5)
+        logout_button = tk.Button(self, text = "Logout", command = lambda: controller.present_frame("LoginFrame"), width = 20, height = 10)
+        logout_button.grid(row = 7, column = 4)
+        profile_button = tk.Button(self, text = "Go to Profile", command = self.profile_click, width = 50, height = 15)
+        profile_button.grid(row = 0, column = 0)
+        employee_button = tk.Button(self, text ="Go to Employee Page", command = lambda: controller.present_frame("EmployeeList"), width = 50, height = 15)
+        employee_button.grid(row = 0, column = 5)
 
     def profile_click(self):
         self.controller.app_data["selected_Employee"] = self.controller.app_data["user_id"]
@@ -32,7 +32,6 @@ class LandingFrame(tk.Frame):
 
     def set_login_command(self, command):
         self.login_command = command
-    
 
     #This command will take a user with higher permission to a list of Employees page
     def on_employee_clicked(self):
@@ -47,3 +46,4 @@ class LandingFrame(tk.Frame):
     def on_logout_clicked(self):
         self.login_command()
         #close LandingPage
+
