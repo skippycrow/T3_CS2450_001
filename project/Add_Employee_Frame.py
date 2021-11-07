@@ -40,20 +40,28 @@ class AddEmployee(tk.Frame):
         self.add_street_entry.grid(row=2, column=1)
 
         # City
-        self.add_city_label = tk.Label(self, text="City:").grid(row=2, column=2, pady=5, sticky=tk.W)
-        self.add_city_entry = tk.Entry(self, width=15, bg="white").grid(row=2, column=3)
+        self.add_city_label = tk.Label(self, text="City:")
+        self.add_city_label.grid(row=2, column=2, pady=5, sticky=tk.W)
+        self.add_city_entry = tk.Entry(self, width=15, bg="white")
+        self.add_city_entry.grid(row=2, column=3)
 
         # State
-        self.add_state_label = tk.Label(self, text="State:").grid(row=2, column=4, pady=5, sticky=tk.W)
-        self.add_state_entry = tk.Entry(self, width=15, bg="white").grid(row=2, column=5)
+        self.add_state_label = tk.Label(self, text="State:")
+        self.add_state_label.grid(row=2, column=4, pady=5, sticky=tk.W)
+        self.add_state_entry = tk.Entry(self, width=15, bg="white")
+        self.add_state_entry.grid(row=2, column=5)
 
         # Zip
-        self.add_zip_label = tk.Label(self, text="Zip:").grid(row=3, column=0, pady=5, sticky=tk.W)
-        self.add_zip_entry = tk.Entry(self, width=15, bg="white").grid(row=3, column=1)
+        self.add_zip_label = tk.Label(self, text="Zip:")
+        self.add_zip_label.grid(row=3, column=0, pady=5, sticky=tk.W)
+        self.add_zip_entry = tk.Entry(self, width=15, bg="white")
+        self.add_zip_entry.grid(row=3, column=1)
 
         # Phone
-        self.add_phone_label = tk.Label(self, text="Phone:").grid(row=3, column=2, pady=5, sticky=tk.W)
-        self.add_phone_entry = tk.Entry(self, width=15, bg="white").grid(row=3, column=3)
+        self.add_phone_label = tk.Label(self, text="Phone:")
+        self.add_phone_label.grid(row=3, column=2, pady=5, sticky=tk.W)
+        self.add_phone_entry = tk.Entry(self, width=15, bg="white")
+        self.add_phone_entry.grid(row=3, column=3)
 
         # Email
         self.add_email_label = tk.Label(self, text="Email:")
@@ -62,7 +70,8 @@ class AddEmployee(tk.Frame):
         self.add_email_entry.grid(row=3, column=5)
 
         # Pay Method
-        self.add_payment_method_label = tk.Label(self, text="Pay Method:").grid(row=4, column=0, pady=5, sticky=tk.W)
+        self.add_payment_method_label = tk.Label(self, text="Pay Method:")
+        self.add_payment_method_label.grid(row=4, column=0, pady=5, sticky=tk.W)
         self.add_payment_method_entry = tk.OptionMenu(self, self.pay_method, "Mail", "ACH")
         self.add_payment_method_entry.grid(row=4, column=1)
         self.add_payment_method_entry.config(width=15)
