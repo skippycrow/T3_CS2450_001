@@ -14,119 +14,27 @@ class PayReport:
 		global data
 		self.e_id = e_id
 
-	def get_name (self):
+	def get_name (self): # Gets the name of this employee
 		return data.get_employee(e_id).get_full_name()
-	def get_pay_method (self):
+	def get_pay_method (self): # Gets the pay method for this employee
 		return data.get_employee_data(e_id, 'pay_method')
-	def get_salary (self):
+	def get_salary (self): # Gets the employee's salary
 		return data.get_employee_data(e_id, 'salary')
-	def get_hourly_rate (self):
+	def get_hourly_rate (self): # Gets the employee's hourly rate
 		return data.get_employee_data(e_id, 'hourly')
-
-	def get_hours (self):
+	def get_total_hours (self): # Gets the total hours the employee has worked
 		return data.get_employee(e_id).timecard_data
-	def receipt (self):
+	def get_receipt (self): # Gets receipt associated with employee id
 		return data.get_employee(e_id).receipt_data
-	def commission_rate (self):
+	def get_commission_rate (self): # Gets commission rate of this employee
 		return data.get_employee_data(e_id, 'comission_rate')
-	def overtime_hours(self): return 
 
+	def get_overtime_hours(self): # Gets overtime hours
+		return self.get_hours() - 40 if self.get_hours > 40 else 0
+	def get_regular_hours(self): # Gets regular hours
+		return self.get_hours() if self.get_hours <= 40 else 40
 
-#TODO: Define calculate_deductions(search)
-def calculate_deductions(search):
-	"""
-	Description
-	-----------
-	Calculate the deductions to the employee's pay
+	def get_total_pay:
+		return 12
 
-	Parameters
-	----------
-	search : Employee
-		The employee who's information is being accessed
-	
-	Returns
-	-------
-	decimal
-		Deduction ammount
-	"""
-	pass
-
-#FIXME: Unable to retrieve employee rate and hours
-def calculate_overtime_pay(search):
-	"""
-	Description
-	-----------
-	Calculate the employee pay for overtime
-
-	Parameters
-	----------
-	search : Employee
-		The employee who's information is being accessed
-	
-	Returns
-	-------
-	decimal
-		Overtime pay ammount
-	"""
-	#hours = search.hours - 40 if search.hours > 40 else 0
-	#rate = search.rate * 1.5
-	#return hours * rate
-	pass
-
-#FIXME: Unable to retrieve employee rate and hours
-def calculate_pay(search):
-	"""
-	Description
-	-----------
-	Calculate the employee pay
-
-	Parameters
-	----------
-	search : Employee
-		The employee who's information is being accessed
-	
-	Returns
-	-------
-	decimal
-		Pay amount
-	"""
-	#hours = 40 if search.hours > 40 else search.hours
-	#rate = search.rate
-	#return hours * rate
-	pass
-
-def calculate_total_income(search):
-	"""
-	Description
-	-----------
-	Sum of employee pay and employee overtime pay
-
-	Parameters
-	----------
-	search : Employee
-		The employee who's information is being accessed
-
-	Returns
-	-------
-	decimal
-		Total income
-	"""
-	return calculate_pay(search) + calculate_overtime_pay(search)
-
-def calculate_total_pay(search):
-	"""
-	Description
-	-----------
-	Apply deductions to total employee income
-
-	Parameters
-	search : Employee
-		The employee who's information is being accessed
-
-	Returns
-	-------
-	decimal
-		Total income - deductions
-	"""
-	return calculate_total_pay(search) - calculate_deductions(search)
 
