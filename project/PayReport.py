@@ -9,32 +9,75 @@ data.read_timecard_data("Resources\\timecards.csv")
 data.read_receipt_data("Resources\\receipts.csv")
 
 class PayReport:
-	#Employee Data
+	# Employee Data
 	def __init__(self, e_id):
 		global data
 		self.e_id = e_id
 
+	# Get Inforation from csv and database
 	def get_name (self): # Gets the name of this employee
-		return data.get_employee(e_id).get_full_name()
+		return data.get_employee(self.e_id).get_full_name()
+
 	def get_pay_method (self): # Gets the pay method for this employee
-		return data.get_employee_data(e_id, 'pay_method')
+		return data.get_employee_data(self.e_id, 'pay_method')
+
 	def get_salary (self): # Gets the employee's salary
-		return data.get_employee_data(e_id, 'salary')
+		return float(data.get_employee_data(self.e_id, 'salary'))
+
 	def get_hourly_rate (self): # Gets the employee's hourly rate
-		return data.get_employee_data(e_id, 'hourly')
+		return float(data.get_employee_data(self.e_id, 'hourly'))
+
 	def get_total_hours (self): # Gets the total hours the employee has worked
-		return data.get_employee(e_id).timecard_data
-	def get_receipt (self): # Gets receipt associated with employee id
-		return data.get_employee(e_id).receipt_data
+		total_time = 0
+		for time in data.get_employee(self.e_id).timecard_data:
+		    total_time += time
+		return total_time
+
+	def get_receipts (self): # Gets receipt associated with employee id
+		return data.get_employee(self.e_id).receipt_data
+
 	def get_commission_rate (self): # Gets commission rate of this employee
-		return data.get_employee_data(e_id, 'comission_rate')
+		return data.get_employee_data(self.e_id, 'comission_rate')
 
+	# Calculate hours
 	def get_overtime_hours(self): # Gets overtime hours
-		return self.get_hours() - 40 if self.get_hours > 40 else 0
+		return self.get_total_hours() - 40 if self.get_total_hours() > 40 else 0
+
 	def get_regular_hours(self): # Gets regular hours
-		return self.get_hours() if self.get_hours <= 40 else 40
+		return self.get_total_hours() if self.get_total_hours() <= 40 else 40
 
-	def get_total_pay:
-		return 12
+	# Calculate Rates
+	def get_overtime_rate(self): # Gets 1.5 * hourly rate
+		return self.get_hourly_rate() * 1.5
 
+	# Calculate Hourly Pay
+	def get_regular_pay(self): # Gets regular pay
+		return self.get_regular_hours() * self.get_hourly_rate()
 
+	def get_overtime_pay(self): # Gets overtime pay
+		return self.get_overtime_hours() * self.get_overtime_rate()
+
+	def get_total_hourly_pay(self):
+		return self.get_regular_pay() + self.get_overtime_pay()
+
+	# Non-Hourly Pay
+	def get_commission_pay(self): # Gets the payment from commissions
+		total = 0
+		for commission in self.get_receipts():
+			total += commission * (self.get_commission_rate/100)
+		return total
+
+	def __str__(self):
+		pay_string = ""
+		if self.get_pay_method() == '1':
+			pay_string = 'Hours: {0:.2f}, Pay: {1:.2f}'.format(self.get_total_hours(), self.get_total_hourly_pay())
+		else:
+			pay_string = 'Salary: {0:.2f}'.format(self.get_salary())
+		info_string = 'ID: {0}, Name: {1}, {2}'.format(self.e_id, self.get_name(), pay_string)
+		return info_string
+
+def pay_report():
+	for e_id in data.employees.keys():
+		print(PayReport(e_id))
+
+pay_report()
