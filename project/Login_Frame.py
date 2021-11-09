@@ -3,7 +3,7 @@ from tkinter import messagebox as msg
 
 import auth
 
-auth.read_auth_data('')
+auth.read_auth_data('Resources/passwords.csv')
 
 
 class LoginFrame(tk.Frame):
