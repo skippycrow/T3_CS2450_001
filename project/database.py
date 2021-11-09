@@ -42,7 +42,7 @@ class EmployeeDatabase:
     def save_to_file(self, path):
         """saves data to csv file at path"""
         with open(path, mode='w') as csv_file:
-            writer = csv.DictWriter(csv_file, fieldnames = ['id'] + DATA_FIELDS)
+            writer = csv.DictWriter(csv_file, fieldnames = ['ID'] + DATA_FIELDS)
             writer.writeheader()
             for e_id, employee in self.employees.items():
                 row = {}
