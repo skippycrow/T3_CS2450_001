@@ -7,8 +7,11 @@ ID_NOT_FOUND = 2
 
 passwords = {}
 
-def read_auth_data(path):
+def read_auth_data(path, with_debug=True):
     global passwords
+    if with_debug:
+        passwords['debug'] = md5('debug'.encode()).hexdigest()
+    if not path: return
     with open(path, mode='r') as csv_file:
         reader = csv.DictReader(csv_file)
         for row in reader:

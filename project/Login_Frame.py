@@ -3,7 +3,7 @@ from tkinter import messagebox as msg
 
 import auth
 
-#auth.read_auth_data(path)
+auth.read_auth_data('')
 
 
 class LoginFrame(tk.Frame):
@@ -38,9 +38,6 @@ class LoginFrame(tk.Frame):
 
     
     def check_login(self):
-        self.controller.app_data["user_id"] = self.e_id;
-        self.controller.present_frame("LandingFrame")
-
         results = auth.verify_password(self.e_id.get(), self.password.get())
         
         if results == auth.PASSWORD_CORRECT:
