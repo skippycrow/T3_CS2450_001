@@ -2,42 +2,43 @@ from tkinter import *
 from tkinter.ttk import *
 from database import Employee
 from database import EmployeeDatabase
+from datetime import date
 
-data = EmployeeDatabase()
-data.load_from_file("Resources\\employees.csv")
-data.read_timecard_data("Resources\\timecards.csv")
-data.read_receipt_data("Resources\\receipts.csv")
+
 
 class PayReport:
 	# Employee Data
 	def __init__(self, e_id):
-		global data
+		self.data = EmployeeDatabase()
+		self.data.load_from_file("Resources\\employees.csv")
+		self.data.read_timecard_data("Resources\\timecards.csv")
+		self.data.read_receipt_data("Resources\\receipts.csv")
 		self.e_id = e_id
 
 	# Get Inforation from csv and database
 	def get_name (self): # Gets the name of this employee
-		return data.get_employee(self.e_id).get_full_name()
+		return self.data.get_employee(self.e_id).get_full_name()
 
 	def get_pay_method (self): # Gets the pay method for this employee
-		return data.get_employee_data(self.e_id, 'pay_method')
+		return self.data.get_employee_data(self.e_id, 'pay_method')
 
 	def get_salary (self): # Gets the employee's salary
-		return float(data.get_employee_data(self.e_id, 'salary'))
+		return float(self.data.get_employee_data(self.e_id, 'salary'))
 
 	def get_hourly_rate (self): # Gets the employee's hourly rate
-		return float(data.get_employee_data(self.e_id, 'hourly'))
+		return float(self.data.get_employee_data(self.e_id, 'hourly'))
 
 	def get_total_hours (self): # Gets the total hours the employee has worked
 		total_time = 0
-		for time in data.get_employee(self.e_id).timecard_data:
+		for time in self.data.get_employee(self.e_id).timecard_data:
 		    total_time += time
 		return total_time
 
 	def get_receipts (self): # Gets receipt associated with employee id
-		return data.get_employee(self.e_id).receipt_data
+		return self.data.get_employee(self.e_id).receipt_data
 
 	def get_commission_rate (self): # Gets commission rate of this employee
-		return data.get_employee_data(self.e_id, 'comission_rate')
+		return self.data.get_employee_data(self.e_id, 'comission_rate')
 
 	# Calculate hours
 	def get_overtime_hours(self): # Gets overtime hours
@@ -57,7 +58,7 @@ class PayReport:
 	def get_overtime_pay(self): # Gets overtime pay
 		return self.get_overtime_hours() * self.get_overtime_rate()
 
-	def get_total_hourly_pay(self):
+	def get_total_hourly_pay(self): # Gets total hourly pay
 		return self.get_regular_pay() + self.get_overtime_pay()
 
 	# Non-Hourly Pay
@@ -67,7 +68,8 @@ class PayReport:
 			total += commission * (self.get_commission_rate/100)
 		return total
 
-	def __str__(self):
+	# Object to String conversion
+	def __str__(self): # Convert PayReport object to string listing all the necessary details for the pay report.
 		pay_string = ""
 		if self.get_pay_method() == '1':
 			pay_string = 'Hours: {0:.2f}, Pay: {1:.2f}'.format(self.get_total_hours(), self.get_total_hourly_pay())
@@ -76,8 +78,15 @@ class PayReport:
 		info_string = 'ID: {0}, Name: {1}, {2}'.format(self.e_id, self.get_name(), pay_string)
 		return info_string
 
-def pay_report():
-	for e_id in data.employees.keys():
-		print(PayReport(e_id))
+def pay_roll():
+	data = EmployeeDatabase()
+	data.load_from_file("Resources\\employees.csv")
+	data.read_timecard_data("Resources\\timecards.csv")
+	data.read_receipt_data("Resources\\receipts.csv")
 
-pay_report()
+	reptx = open('Resources\\PayReport.txt', 'a')
+	reptx.write('\n------------Payreport of: {0}------------\n'.format(date.today()))
+	for e_id in data.employees.keys():
+		reptx.write(PayReport(e_id).__str__() + '\n')
+	print("Generated payroll at: {0}".format(reptx.name))
+	reptx.close()
