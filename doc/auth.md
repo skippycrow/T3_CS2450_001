@@ -2,12 +2,14 @@
 
 The `auth` library has two helper functions:
 
-* `read_auth_data(path)`
+* `read_auth_data(path, with_debug=True)`
     Loads a csv file at `path`, and read in the data
     
     The csv file should have two columns, titled `id` and `pw_hash`
     * `id`: the id of the employee
     * `pw_hash`: the MD5 checksum of the password (can be calculated for a given password with `hashlib.md5(password.encode()).hexdigest()`
+
+    If `with_debug` is `True`, then the ID/password combo of 'debug'/'debug' will be added.
 
 * `verify_password(_id, _pass)`:
     Verifies (via md5 checksum) that the given `_pass` is the password for the employee with the given `_id`
