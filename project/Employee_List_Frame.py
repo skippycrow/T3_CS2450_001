@@ -40,7 +40,7 @@ class EmployeeList(tk.Frame):
 
         #Payroll Button
         # ! self.payroll_button = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = lambda: controller.preset_frame("payrollFrame"))
-        self.payroll_button = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = lambda: PR.pay_roll())
+        self.payroll_button = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = lambda: PR.pay_roll(controller.database))
         self.payroll_button.grid(row=4, column= 0, sticky = tk.E)
 
         #Export employee button
