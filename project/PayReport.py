@@ -8,11 +8,8 @@ from datetime import date
 
 class PayReport:
 	# Employee Data
-	def __init__(self, e_id):
-		self.data = EmployeeDatabase()
-		self.data.load_from_file("Resources\\employees.csv")
-		self.data.read_timecard_data("Resources\\timecards.csv")
-		self.data.read_receipt_data("Resources\\receipts.csv")
+	def __init__(self, e_id, data):
+		self.data = data
 		self.e_id = e_id
 
 	# Get Inforation from csv and database
@@ -78,15 +75,10 @@ class PayReport:
 		info_string = 'ID: {0}, Name: {1}, {2}'.format(self.e_id, self.get_name(), pay_string)
 		return info_string
 
-def pay_roll():
-	data = EmployeeDatabase()
-	data.load_from_file("Resources\\employees.csv")
-	data.read_timecard_data("Resources\\timecards.csv")
-	data.read_receipt_data("Resources\\receipts.csv")
-
+def pay_roll(data):
 	reptx = open('Resources\\PayReport.txt', 'a')
 	reptx.write('\n------------Payreport of: {0}------------\n'.format(date.today()))
 	for e_id in data.employees.keys():
-		reptx.write(PayReport(e_id).__str__() + '\n')
+		reptx.write(PayReport(e_id, data).__str__() + '\n')
 	print("Generated payroll at: {0}".format(reptx.name))
 	reptx.close()
