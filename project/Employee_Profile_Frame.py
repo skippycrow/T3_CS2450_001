@@ -9,9 +9,8 @@ class EmployeeProfile(tk.Frame):
         #Initialize controller
         self.controller = controller
 
-    
-
-        self.e_id = self.controller.app_data["selected_employee"]      #Will need to get id# from login or employee list
+        self.my_id = self.controller.app_data["user_id"]    #When a user logs in their id# is assigned to app_data {user_id:****}
+        self.e_id = self.controller.app_data["selected_employee"]
         self.name = self.controller.database.get_employee_data(self.e_id, "name_first") + " " + self.controller.database.get_employee_data(self.e_id, "name_last")
         self.title = "Employee"     #self.controller.database.get_employee_data(self.e_id, "title")
         self.dept = "Faculty"       #self.controller.database.get_employee_data(self.e_id, "dept")
@@ -31,7 +30,6 @@ class EmployeeProfile(tk.Frame):
         self.start_date = self.controller.database.get_employee_data(self.e_id, "start_date")
         self.permission = self.controller.database.get_employee_data(self.e_id, "permission")
         self.end_date = self.controller.database.get_employee_data(self.e_id, "end_date")
-       
         tk.Label(self, text=self.name, font = "none 18 bold").grid(column=0, row=0, sticky = tk.W)
         tk.Label(self, text=self.e_id, font = "none 12 bold").grid(column=0, row=1, sticky = tk.W)
         tk.Label(self, text="Position: " + self.title, font = "none 12 bold").grid(column=0, row=2, sticky = tk.W)
@@ -48,17 +46,23 @@ class EmployeeProfile(tk.Frame):
             tk.Label(self, text="Salary: " + self.salary).grid(row=9, column=1, sticky=tk.W)
             tk.Label(self, text="Hourly: " + self.hourly).grid(row=9, column=2, sticky=tk.W)
             tk.Label(self, text="Commission: " + self.commission).grid(row=9, column=3, sticky=tk.W)
-            tk.Label(self, text="<<routing #, account #, and other data fields to be implemented").grid(row=10, column=0, sticky=tk.W)
+            tk.Label(self, text="Routing Number: " + self.routing).grid(row=10, column=0, sticky=tk.W)
+            tk.Label(self, text="Account Number: " + self.account).grid(row=10, column=1, sticky=tk.W)
+            tk.Label(self, text="Social Security Number: ***-**-" + self.ssn[-4:-1]).grid(row=10, column=1, sticky=tk.W)
+            tk.Label(self, text="Birthday: " + self.birthday[0:1] + "/" + self.birthday[2:3] + "/" + self.birthday[4:]).grid(row=11, column=0, sticky=tk.W)
+            tk.Label(self, text="Start Date: " + self.start_date).grid(row=11, column=1, sticky=tk.W)
 
             tk.Button(self, text="Edit Employee", command=lambda: controller.present_frame("EditEmployee")).grid(column=1, row=20)
 
         tk.Button(self, text="Back", command = lambda: controller.present_frame("LandingFrame")).grid(column=2, row=20)
-    
-    def stand_in(self):
-        pass
 
     def check_permission(self, id):
         """returns true if logged in employee matches profile id#
         returns true if logged in as administrator
         returns false otherwise"""
-        return True
+        if self.my_id == self.e_id:
+            return True
+        elif self.permission == "admin":
+            return True
+        else:
+            return False
