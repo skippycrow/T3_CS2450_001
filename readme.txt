@@ -12,3 +12,5 @@ Welcome! Here's the steps to setup the software to be ran
     - Open the project in thonny and run it
     - Double click on "Controller.py" (Windows only - May take some configuration)
     - terminal command: python path/to/Controller.py
+    
+Please refer to the user manual for more usage information
