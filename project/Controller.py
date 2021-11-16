@@ -65,6 +65,7 @@ class EmployeeApp(tk.Tk):
         frame = self.frames[page_name]
         #Raise the frame on top of the others
         frame.tkraise()
+        self.title(page_name)
 
 def main():
     app = EmployeeApp()
