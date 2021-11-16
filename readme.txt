@@ -3,7 +3,7 @@ T3_CS2450_001
 Welcome! Here's the steps to setup the software to be ran
 
 1. Download and install python
-  - Page to download installer from: https://www.python.org/downloads/
+  - Page to download installer: https://www.python.org/downloads/
   - The project was developed for thonny using pyton 3.7. Later versions might have incompatability issues
   - Run the installer
   
