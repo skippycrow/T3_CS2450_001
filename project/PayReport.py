@@ -76,7 +76,7 @@ class PayReport:
         return info_string
 
 def pay_roll(data):
-    reptx = open('Resources\\PayReport.txt', 'a')
+    reptx = open('Resources/PayReport.txt', 'a')
     reptx.write('\n------------Payreport of: {0}------------\n'.format(date.today()))
     for e_id in data.employees.keys():
         reptx.write(PayReport(e_id, data).__str__() + '\n')
