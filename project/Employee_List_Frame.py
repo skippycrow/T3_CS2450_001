@@ -14,12 +14,15 @@ class EmployeeList(tk.Frame):
         tk.Label(self, text = "Search Employee ", fg = "black", font = "none 12 bold").grid(row = 1, column = 0, sticky = tk.W)
         self.search_results = []
         self.selected_employee = None
+        self.sv = tk.StringVar()
+        self.sv.trace_add("write", self.search_employee)
+
         ### TODO: impmlement the employee database 
         print(self.controller.database.employees)
         ###
 
         #Search Box
-        self.search_box = tk.Entry(self, width = 73, bg = "white")
+        self.search_box = tk.Entry(self, textvariable=self.sv, width = 73, bg = "white")
         self.search_box.grid(row=2, column =0, sticky = tk.NW)
         
         #Search Button
@@ -56,20 +59,20 @@ class EmployeeList(tk.Frame):
         #copys the selected employee to selectedEmployee
     def select_employee(self, event):
         self.result_box.get(tk.ACTIVE)
-        
+
         #Search function
-    def search_employee(self):
+    def search_employee(self, *args):
         self.search_results = []
         for employeee in self.controller.database.employees:
             empFirstName = self.controller.database.get_employee_data(employeee, "name_first")
             empLastName = self.controller.database.get_employee_data(employeee, "name_last")
             empNum = employeee
             if (self.search_box.get()).lower() in empNum:
-                self.search_results.append([empFirstName + ' ' + empLastName, empNum])                  
+                self.search_results.append([empFirstName + ' ' + empLastName, empNum])
             elif (self.search_box.get()).lower() in empLastName.lower():
-                self.search_results.append([empFirstName + ' ' +  empLastName, empNum])            
+                self.search_results.append([empFirstName + ' ' +  empLastName, empNum])
             elif (self.search_box.get()).lower() in empFirstName.lower():
-                self.search_results.append([empFirstName + ' ' +  empLastName, empNum])  
+                self.search_results.append([empFirstName + ' ' +  empLastName, empNum])
         self.update_list()
         
         #Updates the listbox to display the correct list of names.
@@ -87,6 +90,6 @@ class EmployeeList(tk.Frame):
     def employeeProfileFrame(self):
         self.controller.app_data["selected_Employee"] = (self.result_box.get(tk.ACTIVE).split("ID#")[1])
         self.controller.present_frame("EmployeeProfile")
-        
-        
+
+
         
