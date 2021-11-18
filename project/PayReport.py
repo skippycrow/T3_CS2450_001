@@ -80,5 +80,6 @@ def pay_roll(data):
     reptx.write('\n------------Payreport of: {0}------------\n'.format(date.today()))
     for e_id in data.employees.keys():
         reptx.write(PayReport(e_id, data).__str__() + '\n')
+    messagebox.showinfo('Payroll generated', "Generated payroll at: {0}".format(reptx.name))
     print("Generated payroll at: {0}".format(reptx.name))
     reptx.close()
