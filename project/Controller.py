@@ -60,11 +60,12 @@ class EmployeeApp(tk.Tk):
     def remove_data(self, frame_subj):
         del self.app_data[frame_subj]
 
-    def present_frame(self, page_name):
+    def present_frame(self, page_name, window_title_override=''):
         #Set the frame
         frame = self.frames[page_name]
         #Raise the frame on top of the others
         frame.tkraise()
+        self.title(page_name if (window_title_override == '') else window_title_override)
 
 def main():
     app = EmployeeApp()
