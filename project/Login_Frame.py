@@ -19,22 +19,23 @@ class LoginFrame(tk.Frame):
         
 
         # Style frame
-        emptyrow0 = tk.Label(self, text = "").grid(row=0)
-        emptyrow1 = tk.Label(self, text = "").grid(row=1)
-        emptyrow2 = tk.Label(self, text = "").grid(row=2)
-        emptyrow3 = tk.Label(self, text = "").grid(row=3)
-        emptyrow4 = tk.Label(self, text = "").grid(row=4)
-        id_label = tk.Label(self, text = "Employee ID", font = "none 20 bold").grid(row=5, column = 3)
+        id_label = tk.Label(self, text = "Employee ID", font = "none 20 bold").grid(row= 1, column = 1)
         self.e_id = tk.StringVar()
-        e_id_input = tk.Entry(self, textvariable = self.e_id, width = 70).grid(row = 5, column = 4, pady = 10)
+        e_id_input = tk.Entry(self, textvariable = self.e_id, width = 70).grid(row = 1, column = 2)
         self.controller.add_data("user_id", self.e_id)
-        password_label = tk.Label(self, text = "Password", font = "none 20 bold").grid(row = 6, column = 3)
+        password_label = tk.Label(self, text = "Password", font = "none 20 bold").grid(row = 2, column = 1)
         self.password = tk.StringVar()
-        password_input = tk.Entry(self, textvariable = self.password, show = '*', width = 70).grid(row = 6, column = 4, pady = 10)
+        password_input = tk.Entry(self, textvariable = self.password, show = '*', width = 70).grid(row = 2, column = 2)
         
         # Add login button, calls checkLogin
         emptyrow3 = tk.Label(self, text = "").grid(row=3)
-        login_button = tk.Button(self, text = "Login", width = 20, height = 1, command = self.check_login).grid(row = 9, column = 4, pady = 10)
+        login_button = tk.Button(self, text = "Login", width = 20, height = 1, command = self.check_login).grid(row = 3, column = 2)
+
+        #Set weight to surrounding row/col to center buttons on frame
+        self.grid_rowconfigure(0, weight = 1)
+        self.grid_rowconfigure(4, weight = 1)
+        self.grid_columnconfigure(0, weight = 1)
+        self.grid_columnconfigure(4, weight = 1)
 
     
     def check_login(self):
