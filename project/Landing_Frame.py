@@ -16,12 +16,18 @@ class LandingFrame(tk.Frame):
         self.user_id = self.controller.app_data["user_id"]
         
         #Set the format of the buttons and all of their locations
-        logout_button = tk.Button(self, text = "Logout", command = lambda: controller.present_frame("LoginFrame"), width = 20, height = 10)
-        logout_button.grid(row = 7, column = 4)
-        profile_button = tk.Button(self, text = "Go to Profile", command = self.profile_click, width = 50, height = 15)
-        profile_button.grid(row = 0, column = 0)
-        employee_button = tk.Button(self, text ="Go to Employee Page", command = lambda: controller.present_frame("EmployeeList"), width = 50, height = 15)
-        employee_button.grid(row = 0, column = 5)
+        logout_button = tk.Button(self, text = "Logout", font = "none 18 bold", command = lambda: controller.present_frame("LoginFrame"), width = 10, height = 5)
+        logout_button.grid(row = 1, column = 2)
+        profile_button = tk.Button(self, text = "Go to Profile", font = "none 18 bold", command = self.profile_click, width = 10, height = 5)
+        profile_button.grid(row = 1, column = 1)
+        employee_button = tk.Button(self, text ="Go to \nEmployee \nPage", font = "none 18 bold", command = lambda: controller.present_frame("EmployeeList"), width = 10, height = 5)
+        employee_button.grid(row = 1, column = 3)
+
+        #Set weight to surrounding row/col to center buttons on frame
+        self.grid_rowconfigure(0, weight = 1)
+        self.grid_rowconfigure(2, weight = 1)
+        self.grid_columnconfigure(0, weight = 1)
+        self.grid_columnconfigure(4, weight = 1)
 
     def profile_click(self):
         self.controller.app_data["selected_Employee"] = self.controller.app_data["user_id"]
@@ -46,4 +52,3 @@ class LandingFrame(tk.Frame):
     def on_logout_clicked(self):
         self.login_command()
         #close LandingPage
-
