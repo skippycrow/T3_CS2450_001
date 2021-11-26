@@ -12,7 +12,7 @@ class EmployeeList(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        tk.Label(self, text="Search Employee ", fg="black", font="none 12 bold").grid(row=1, column=0, sticky=tk.W)
+        tk.Label(self, text="Search Employee ", fg="black", font="none 12 bold").grid(row=1, column=1, sticky=tk.W)
         self.search_results = []
         self.selected_employee = None
         self.sv = tk.StringVar()
@@ -24,40 +24,46 @@ class EmployeeList(tk.Frame):
 
         # Search Box
         self.search_box = tk.Entry(self, textvariable=self.sv, width=73, bg="white")
-        self.search_box.grid(row=2, column=0, sticky=tk.NW)
+        self.search_box.grid(row=2, column=1, sticky=tk.NW)
 
         # Search Button
         self.clear_button = tk.Button(self, text="Clear", width=20, bg="white", command=self.clear_search)
-        self.clear_button.grid(row=2, column=0, sticky=tk.NE)
+        self.clear_button.grid(row=2, column=1, sticky=tk.NE)
 
         # Result Box
         self.result_box = tk.Listbox(self, width=100, bg="white")
-        self.result_box.grid(row=3, column=0, sticky=tk.NW)
+        self.result_box.grid(row=3, column=1, sticky=tk.NW)
 
         # Add employee Button
         self.add_employee_button = tk.Button(self, text="Add Employee", width=20, bg="white",
                                              command=self.addEmployeeFrame)
-        self.add_employee_button.grid(row=4, column=0, sticky=tk.NW)
+        self.add_employee_button.grid(row=4, column=1, sticky=tk.NW)
 
         # Employee profile button
         self.employee_profile_button = tk.Button(self, text="Employee Profile", width=20, bg="white",
                                                  command=self.employeeProfileFrame)
-        self.employee_profile_button.grid(row=5, column=0, sticky=tk.NW)
+        self.employee_profile_button.grid(row=5, column=1, sticky=tk.NW)
 
         # Payroll Button
         # ! self.payroll_button = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = lambda: controller.preset_frame("payrollFrame"))
         self.payroll_button = tk.Button(self, text="Payroll", width=20, bg="white",
                                         command=lambda: PR.pay_roll(controller.database))
-        self.payroll_button.grid(row=4, column=0, sticky=tk.E)
+        self.payroll_button.grid(row=4, column=1, sticky=tk.E)
 
         # Export employee button
         self.export_employee_button = tk.Button(self, text="Export Employee", width=20, bg="white",
                                                 command=lambda: controller.present_frame("exportEmployee"))
-        self.export_employee_button.grid(row=5, column=0, sticky=tk.E)
+        self.export_employee_button.grid(row=5, column=1, sticky=tk.E)
 
         # back button
         tk.Button(self, text="Back", width=20, bg="white",
-                  command=lambda: controller.present_frame("LandingFrame")).grid(column=0, row=6)
+                  command=lambda: controller.present_frame("LandingFrame")).grid(column=1, row=6)
+
+        #Set weight to surrounding row/col to center buttons on frame
+        self.grid_rowconfigure(0, weight = 1)
+        self.grid_rowconfigure(7, weight = 1)
+        self.grid_columnconfigure(0, weight = 1)
+        self.grid_columnconfigure(2, weight = 1)
 
         # Called to set up the employee list
         self.search_employee()
