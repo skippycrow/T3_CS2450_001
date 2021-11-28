@@ -14,3 +14,10 @@ Welcome! Here's the steps to setup the software to be ran
     - terminal command: python path/to/Controller.py
     
 Please refer to the user manual for more usage information
+
+
+To log in as a test user you can use:
+Username: debug
+Password: debug
+
+To view the admin permissions
