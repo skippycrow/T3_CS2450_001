@@ -21,8 +21,6 @@ class EmployeeApp(tk.Tk):
             self.database.load_from_file(os.getcwd() + "/Resources/employees.csv")
         if os.path.exists(os.getcwd() + "/project/Resources/employees.csv"):
             self.database.load_from_file(os.getcwd() + "/project/Resources/employees.csv")
-        # Load data?
-
 
         #Initialize container
         container = tk.Frame(self)
@@ -35,7 +33,7 @@ class EmployeeApp(tk.Tk):
 
         #Initialize dict to store data - Store user, permission, current employee etc. here where it can be accessed by other frames if it needs to
         #Example: add_data("LandingPage_Permission", "Admin")
-        self.app_data = {"selected_employee": "522759"}
+        self.app_data = {"LoginFrame_userID" : "522759"}
 
         #For each page
         for page in (LoginFrame, LandingFrame, EmployeeList, AddEmployee, EditEmployee, EmployeeProfile):
@@ -61,8 +59,12 @@ class EmployeeApp(tk.Tk):
         del self.app_data[frame_subj]
 
     def present_frame(self, page_name, window_title_override=''):
+        #Update the frame if it needs to be ; mainly for updating employee profile
+        self.frames[page_name].update()
+
         #Set the frame
         frame = self.frames[page_name]
+
         #Raise the frame on top of the others
         frame.tkraise()
         self.title(page_name if (window_title_override == '') else window_title_override)
