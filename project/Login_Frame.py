@@ -37,18 +37,19 @@ class LoginFrame(tk.Frame):
         self.grid_columnconfigure(0, weight = 1)
         self.grid_columnconfigure(4, weight = 1)
 
+    def update(self):
+        pass
+
     
     def check_login(self):
         results = auth.verify_password(self.e_id.get(), self.password.get())
         
         if results == auth.PASSWORD_CORRECT:
-            self.controller.app_data["user_id"] = self.e_id;
+            self.controller.app_data["LoginFrame_userID"] = self.e_id.get()
             self.controller.present_frame("LandingFrame")
 
         else:
          self.fail_login()
-
-        pass
         
     # Will call up a warning box if the credentials are invalid
     def fail_login(self):
