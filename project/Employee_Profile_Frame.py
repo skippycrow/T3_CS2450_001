@@ -10,6 +10,12 @@ class EmployeeProfile(tk.Frame):
         self.controller = controller
 
     def update(self):
+        #For each widget in frame
+        for widget in self.winfo_children():
+            #Destroy the widget
+            widget.destroy()
+
+        #Get data
         self.e_id = self.controller.app_data["LoginFrame_userID"]    #Will need to get id# from login or employee list
         self.name = self.controller.database.get_employee_data(self.e_id, "name_first") + " " + self.controller.database.get_employee_data(self.e_id, "name_last")
         self.title = "Employee"     #self.controller.database.get_employee_data(self.e_id, "title")
@@ -31,27 +37,26 @@ class EmployeeProfile(tk.Frame):
         self.permission = self.controller.database.get_employee_data(self.e_id, "permission")
         self.end_date = self.controller.database.get_employee_data(self.e_id, "end_date")
        
-        tk.Label(self, text=self.name, font = "none 18 bold").grid(column=0, row=0, sticky = tk.W)
-        tk.Label(self, text=self.e_id, font = "none 12 bold").grid(column=0, row=1, sticky = tk.W)
-        tk.Label(self, text="Position: " + self.title, font = "none 12 bold").grid(column=0, row=2, sticky = tk.W)
-        tk.Label(self, text="Department: " + self.dept, font = "none 12 bold").grid(row=2, column=2, sticky=tk.W)
-        tk.Label(self, text="Office Phone: " + self.phone).grid(column=0, row=3, columnspan=1, sticky=tk.W)
-        tk.Label(self, text="Email: " + self.email).grid(row=3, column=2, columnspan=1, sticky=tk.W)
-        tk.Label(self, text=' ').grid(row=5,column=0)
+        #Style page
+        tk.Label(self, text = self.name, font = "none 18 bold").grid(column = 0, row = 0, sticky = tk.W)
+        tk.Label(self, text = self.e_id, font = "none 12 bold").grid(column = 0, row = 1, sticky = tk.W)
+        tk.Label(self, text = "Position: " + self.title, font = "none 12 bold").grid(column = 0, row = 2, sticky = tk.W)
+        tk.Label(self, text = "Department: " + self.dept, font = "none 12 bold").grid(row = 2, column = 2, sticky = tk.W)
+        tk.Label(self, text = "Office Phone: " + self.phone).grid(column = 0, row = 3, columnspan = 1, sticky = tk.W)
+        tk.Label(self, text = "Email: " + self.email).grid(row = 3, column = 2, columnspan = 1, sticky = tk.W)
+        tk.Label(self, text = ' ').grid(row = 5,column = 0)
+        tk.Button(self, text = "Back", command = lambda: self.controller.present_frame("LandingFrame")).grid(column = 2, row = 20)
 
         if self.check_permission(23): #the logged-in employee's number will be passed in
-            tk.Label(self, text='<<Other employee info will display here>>').grid(row=6, column=0, sticky=tk.W)
-            tk.Label(self, text="Address: ").grid(row=7, column=0, sticky=tk.W)    #FIX address line then add in variable
-            tk.Label(self, text="Employee Classification: " + self.classification).grid(row=8, column=0, sticky=tk.W)
-            tk.Label(self, text="Pay Method: " + self.pay_method).grid(row=9, column=0, sticky=tk.W)
-            tk.Label(self, text="Salary: " + self.salary).grid(row=9, column=1, sticky=tk.W)
-            tk.Label(self, text="Hourly: " + self.hourly).grid(row=9, column=2, sticky=tk.W)
-            tk.Label(self, text="Commission: " + self.commission).grid(row=9, column=3, sticky=tk.W)
-            tk.Label(self, text="<<routing #, account #, and other data fields to be implemented").grid(row=10, column=0, sticky=tk.W)
-
-            tk.Button(self, text="Edit Employee", command=lambda: self.controller.present_frame("EditEmployee")).grid(column=1, row=20)
-
-        tk.Button(self, text="Back", command = lambda: self.controller.present_frame("LandingFrame")).grid(column=2, row=20)
+            tk.Label(self, text = '<<Other employee info will display here>>').grid(row = 6, column = 0, sticky = tk.W)
+            tk.Label(self, text = "Address: ").grid(row = 7, column = 0, sticky = tk.W)    #FIX address line then add in variable
+            tk.Label(self, text = "Employee Classification: " + self.classification).grid(row = 8, column = 0, sticky = tk.W)
+            tk.Label(self, text = "Pay Method: " + self.pay_method).grid(row = 9, column = 0, sticky = tk.W)
+            tk.Label(self, text = "Salary: " + self.salary).grid(row = 9, column = 1, sticky = tk.W)
+            tk.Label(self, text = "Hourly: " + self.hourly).grid(row = 9, column = 2, sticky = tk.W)
+            tk.Label(self, text = "Commission: " + self.commission).grid(row = 9, column = 3, sticky = tk.W)
+            tk.Label(self, text = "<<routing #, account #, and other data fields to be implemented").grid(row = 10, column = 0, sticky = tk.W)
+            tk.Button(self, text = "Edit Employee", command=lambda: self.controller.present_frame("EditEmployee")).grid(column = 1, row = 20)
 
     def stand_in(self):
         pass
