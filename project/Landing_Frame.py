@@ -29,6 +29,9 @@ class LandingFrame(tk.Frame):
         self.grid_columnconfigure(0, weight = 1)
         self.grid_columnconfigure(4, weight = 1)
 
+    def update(self):
+        pass
+
     def profile_click(self):
         self.controller.app_data["selected_Employee"] = self.controller.app_data["user_id"]
         self.controller.present_frame("EmployeeProfile")
@@ -51,4 +54,3 @@ class LandingFrame(tk.Frame):
     #This command will return the user to the login page and remove the current frame
     def on_logout_clicked(self):
         self.login_command()
-        #close LandingPage
