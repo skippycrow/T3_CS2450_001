@@ -231,6 +231,9 @@ class EditEmployee(tk.Frame):
         #Return to previous frame
         self.controller.present_frame("EmployeeList")
 
+    def update(self):
+        pass
+
     def check_permission(self, id):
         """returns true if logged in employee matches profile id#
         returns true if logged in as administrator
