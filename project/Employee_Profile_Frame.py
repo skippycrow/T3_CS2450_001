@@ -9,9 +9,8 @@ class EmployeeProfile(tk.Frame):
         #Initialize controller
         self.controller = controller
 
-    
-
-        self.e_id = self.controller.app_data["selected_employee"]      #Will need to get id# from login or employee list
+    def update(self):
+        self.e_id = self.controller.app_data["LoginFrame_userID"]    #Will need to get id# from login or employee list
         self.name = self.controller.database.get_employee_data(self.e_id, "name_first") + " " + self.controller.database.get_employee_data(self.e_id, "name_last")
         self.title = "Employee"     #self.controller.database.get_employee_data(self.e_id, "title")
         self.dept = "Faculty"       #self.controller.database.get_employee_data(self.e_id, "dept")
@@ -50,10 +49,10 @@ class EmployeeProfile(tk.Frame):
             tk.Label(self, text="Commission: " + self.commission).grid(row=9, column=3, sticky=tk.W)
             tk.Label(self, text="<<routing #, account #, and other data fields to be implemented").grid(row=10, column=0, sticky=tk.W)
 
-            tk.Button(self, text="Edit Employee", command=lambda: controller.present_frame("EditEmployee")).grid(column=1, row=20)
+            tk.Button(self, text="Edit Employee", command=lambda: self.controller.present_frame("EditEmployee")).grid(column=1, row=20)
 
-        tk.Button(self, text="Back", command = lambda: controller.present_frame("LandingFrame")).grid(column=2, row=20)
-    
+        tk.Button(self, text="Back", command = lambda: self.controller.present_frame("LandingFrame")).grid(column=2, row=20)
+
     def stand_in(self):
         pass
 
