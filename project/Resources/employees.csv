@@ -1,4 +1,5 @@
 ID,name_first,name_last,contact_phone,contact_email,address_street,address_city,address_state,zip_code,classification,pay_method,salary,hourly,commission_rate,routing_number,Account,social_security,birthday,start_date,permission,title,dept,email,end_date
+0,None,None,,None@uvu.edu,000 None St.,None,NA,00000,1,1,1,1,1,00000000-0,000000-0000,,,,,,,,
 688997,Karina,Gay,,Karina.Gay@uvu.edu,998 Vitae St.,Atlanta,GA,45169,1,1,45884.99,46.92,34,30417353-K,465794-3611,,,,,,,,
 522759,TaShya D.,Snow,,TaShya D..Snow@uvu.edu,2624 Hendrerit St.,College,AK,99789,2,2,50005.5,68.13,25,36644938-8,244269-0000,,,,,,,,
 165966,Rooney,Alvarado,,Rooney.Alvarado@uvu.edu,4963 Nisl. St. Ap #185,Gillette,WY,20226,3,2,34532.37,21.53,24,37324307-8,422046-0739,,,,,,,,
