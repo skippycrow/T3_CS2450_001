@@ -70,6 +70,9 @@ class EmployeeList(tk.Frame):
 
         # copys the selected employee to selectedEmployee
 
+    def update(self):
+        pass
+
     def select_employee(self, event):
         self.result_box.get(tk.ACTIVE)
 
