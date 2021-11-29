@@ -14,7 +14,7 @@ class EmployeeApp(tk.Tk):
         #Initialize tk
         tk.Tk.__init__(self)
         
-        # Initialize database
+        #Initialize database
         self.database = EmployeeDatabase()
         if os.path.exists(os.getcwd() + "/Resources/employees.csv"):
             self.database.load_from_file(os.getcwd() + "/Resources/employees.csv")
@@ -32,7 +32,7 @@ class EmployeeApp(tk.Tk):
 
         #Initialize dict to store data - Store user, permission, current employee etc. here where it can be accessed by other frames if it needs to
         #Example: add_data("LandingPage_Permission", "Admin")
-        self.app_data = {"LoginFrame_userID" : "0"}
+        self.app_data = {"LoginFrame_userID" : "0", "LoginFrame_permission" : "Employee", "EmployeeListFrame_selectedEmployeeID" : "0", "EmployeeListFrame_showSelectedEmployee" : False}
 
         #For each page
         for page in (LoginFrame, LandingFrame, EmployeeList, AddEmployee, EditEmployee, EmployeeProfile):
