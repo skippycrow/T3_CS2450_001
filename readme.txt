@@ -17,7 +17,5 @@ Please refer to the user manual for more usage information
 
 
 To log in as a test user you can use:
-Username: debug
-Password: debug
-
-To view the admin permissions
+Username: 688997
+Password: JEPPXdtzNe
