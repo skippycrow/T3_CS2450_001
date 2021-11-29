@@ -19,7 +19,7 @@ DATA_FIELDS = [
     'hourly',
     'commission_rate',
     'routing_number',
-    'Account',
+    'account',
     'social_security',
     'birthday',
     'start_date',
