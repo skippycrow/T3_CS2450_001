@@ -30,8 +30,7 @@ class EmployeeProfile(tk.Frame):
         self.dept = self.controller.database.get_employee_data(self.e_id_to_present, "dept")
         self.phone = self.controller.database.get_employee_data(self.e_id_to_present, "contact_phone")
         self.email = self.controller.database.get_employee_data(self.e_id_to_present, "contact_email")
-        #Syntax Error:
-        #self.address = self.controller.database.get_employee_data(self.e_id_to_present, "address_street") + " " self.controller.database.get_employee_data(self.e_id_to_present, "address_city") + ", " + self.controller.database.get_employee_data(self.e_id_to_present, "address_state") + " " + self.controller.database.get_employee_data(self.e_id_to_present, "zip_code")
+        self.address = self.controller.database.get_employee_data(self.e_id_to_present, "address_street") + " " + self.controller.database.get_employee_data(self.e_id_to_present, "address_city") + ", " + self.controller.database.get_employee_data(self.e_id_to_present, "address_state") + " " + self.controller.database.get_employee_data(self.e_id_to_present, "zip_code")
         self.classification = self.controller.database.get_employee_data(self.e_id_to_present, "classification")
         self.pay_method = self.controller.database.get_employee_data(self.e_id_to_present, "pay_method")
         self.salary = self.controller.database.get_employee_data(self.e_id_to_present, "salary")
@@ -67,7 +66,7 @@ class EmployeeProfile(tk.Frame):
         if self.show_full_view():
             #Style frame with permission widgets
             tk.Label(self, text = ' ').grid(row = 7, column = 1, sticky = tk.W)
-            tk.Label(self, text = "Address: ").grid(row = 8, column = 1, sticky = tk.W)    #FIX address line then add in variable
+            tk.Label(self, text = "Address: " + self.address).grid(row = 8, column = 1, sticky = tk.W)
             tk.Label(self, text = "Employee Classification: " + self.classification).grid(row = 9, column = 1, sticky = tk.W)
             tk.Label(self, text = "Pay Method: " + self.pay_method).grid(row = 10, column = 1, sticky = tk.W)
             tk.Label(self, text = "Salary: " + self.salary).grid(row = 10, column = 2, sticky = tk.W)
