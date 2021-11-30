@@ -1,27 +1,27 @@
 ID,name_first,name_last,contact_phone,contact_email,address_street,address_city,address_state,zip_code,classification,pay_method,salary,hourly,commission_rate,routing_number,account,social_security,birthday,start_date,permission,title,dept,email,end_date
-0,None,None,,None@uvu.edu,000 None St.,None,NA,00000,1,1,1,1,1,00000000-0,000000-0000,,,,Employee,,,,
-688997,Karina,Gay,,Karina.Gay@uvu.edu,998 Vitae St.,Atlanta,GA,45169,1,1,45884.99,46.92,34,30417353-K,465794-3611,,,,Admin,,,,
-522759,TaShya D.,Snow,,TaShya D..Snow@uvu.edu,2624 Hendrerit St.,College,AK,99789,2,2,50005.5,68.13,25,36644938-8,244269-0000,,,,Admin,,,,
-165966,Rooney,Alvarado,,Rooney.Alvarado@uvu.edu,4963 Nisl. St. Ap #185,Gillette,WY,20226,3,2,34532.37,21.53,24,37324307-8,422046-0739,,,,Employee,,,,
-983010,Jolene,Burgess,,Jolene.Burgess@uvu.edu,P.O. Box 873,South Burlington,VT,32036,2,2,20042.77,40.17,23,15300058-1,828625-2906,,,,Employee,,,,
-939825,Yoko M.,Pitts,,Yoko M..Pitts@uvu.edu,4825 Nec Ave,Meridian,ID,45614,1,1,35251.89,46.64,13,44553589-3,785957-2104,,,,Employee,,,,
-379767,Jin W.,Morrison,,Jin W..Morrison@uvu.edu,8628 Id St.,Milwaukee,WI,80356,3,1,64467.1,82.98,33,21038669-6,654904-8491,,,,Employee,,,,
-900100,Sopoline,Bullock,,Sopoline.Bullock@uvu.edu,4963 Nisl. St. Ap #579,Idaho Falls,ID,65094,1,2,81929.49,42.76,16,46979340-0,485847-0083,,,,Employee,,,,
-969829,Bruce A.,Raymond,,Bruce A..Raymond@uvu.edu,65009 Iaculis Road,Juneau,AK,99719,1,2,37697.26,17.33,22,28504011-6,397558-4404,,,,Employee,,,,
-283809,Hanae,Dickson,,Hanae.Dickson@uvu.edu,1633 Dolor Av.,Dover,DE,61813,1,2,51018.46,91.22,35,48786143-K,295643-0090,,,,Employee,,,,
-224568,Jenna B.,Strickland,,Jenna B..Strickland@uvu.edu,70156 Rutrum Street,Phoenix,AZ,86207,1,1,57545.39,24.7,23,33878326-4,248847-6397,,,,Employee,,,,
-752867,Ruth S.,Haley,,Ruth S..Haley@uvu.edu,6384 Risus Av. Ap #943,Waterbury,CT,58012,2,1,61050.17,42.26,24,12046284-9,399575-5166,,,,Employee,,,,
-163695,Beatrice P.,Ware,,Beatrice P..Ware@uvu.edu,8903 Eget Rd.,Oklahoma City,OK,20552,1,1,46342.01,86.47,17,26387832-9,212804-3003,,,,Employee,,,,
-226423,Randall,Horton,,Randall.Horton@uvu.edu,3834 Tortor Av.,Topeka,KS,52541,2,2,40872.6,57.05,31,13255163-4,104934-8350,,,,Employee,,,,
-349833,Damian,Garrison,,Damian.Garrison@uvu.edu,1646 In Street,San Francisco,CA,95787,2,2,99571.55,82.41,19,45550736-7,779184-5410,,,,Employee,,,,
-531061,Alvin,Guerrero,,Alvin.Guerrero@uvu.edu,248 Mauris St. Ap #748,Indianapolis,IN,92237,2,2,56430.96,38.42,27,16935557-6,994966-8363,,,,Employee,,,,
-169927,Alexandra Y.,Duke,,Alexandra Y..Duke@uvu.edu,P.O. Box 727,Springfield,MA,50647,2,2,31631.98,95.73,13,23609043-4,538878-8548,,,,Employee,,,,
-454912,Sylvester J.,Rowland,,Sylvester J..Rowland@uvu.edu,8628 Pede Ave,Baltimore,MD,93306,1,1,49570.97,25.2,32,5363288-2,339235-5453,,,,Employee,,,,
-285767,Porter,Wolfe,,Porter.Wolfe@uvu.edu,4842 Tincidunt Av.,Miami,FL,44875,1,1,41212.83,87.54,22,16506147-0,087434-1662,,,,Employee,,,,
-674261,Scott T.,Shields,,Scott T..Shields@uvu.edu,8402 Pretium Rd. Ap #163,Grand Rapids,MI,26321,1,1,86913.93,83.43,15,21871936-8,779622-5618,,,,Employee,,,,
-265154,Amir,Mcintosh,,Amir.Mcintosh@uvu.edu,83493 Nibh. Ave,West Jordan,UT,40532,3,2,91254.76,67.73,27,8752077-3,866009-0500,,,,Employee,,,,
-160769,Grant X.,Mccarthy,,Grant X..Mccarthy@uvu.edu,9846 Arcu. Road,Ketchikan,AK,99634,3,1,36025.38,79.99,11,7117844-7,288413-2164,,,,Employee,,,,
-426824,Mira Y.,Wolf,,Mira Y..Wolf@uvu.edu,37224 Pharetra Ave,Savannah,GA,22329,1,2,45576.8,26.99,34,12666803-1,158217-3462,,,,Employee,,,,
-502141,Brock,Sandoval,,Brock.Sandoval@uvu.edu,4882 Consectetuer Street,Wyoming,WY,15840,2,1,58436.75,26.25,32,13977869-3,906688-1963,,,,Employee,,,,
-934003,Kelsey K.,Saunders,,Kelsey K..Saunders@uvu.edu,9920 Aliquam Av. Ap #128,Salt Lake City,UT,97100,1,1,42548.72,31.24,18,37723944-K,769125-4564,,,,Employee,,,,
-377013,Teagan,Goodwin,,Teagan.Goodwin@uvu.edu,P.O. Box 317,Akron,OH,66603,3,2,69765.24,84.73,13,24639186-6,433898-4976,,,,Employee,,,,
+0,None,None,555-555-555,None@uvu.edu,000 None St.,None,NA,00000,1,1,1,1,1,00000000-0,000000-0000,123-45-678,1/1/0000,1/1/0000,Employee,None,None,None@uvu.edu,1/1/0000
+688997,Karina,Gay,555-555-555,Karina.Gay@uvu.edu,998 Vitae St.,Atlanta,GA,45169,1,1,45884.99,46.92,34,30417353-K,465794-3611,123-45-678,1/1/1980,12/1/2012,Admin,CEO,EXEC,Karina.Gay@uvu.edu,1/1/2018
+522759,TaShya D.,Snow,555-555-555,TaShya.D.Snow@uvu.edu,2624 Hendrerit St.,College,AK,99789,2,2,50005.5,68.13,25,36644938-8,244269-0000,123-45-678,2/1/1980,11/1/2013,Admin,CTO,EXEC,TaShya.D.Snow@uvu.edu,2/1/2018
+165966,Rooney,Alvarado,555-555-555,Rooney.Alvarado@uvu.edu,4963 Nisl. St. Ap #185,Gillette,WY,20226,3,2,34532.37,21.53,24,37324307-8,422046-0739,123-45-678,3/1/1980,10/1/2015,Employee,Customer Service,CS,TaShya.D.Snow@uvu.edu,3/1/2018
+983010,Jolene,Burgess,555-555-555,Jolene.Burgess@uvu.edu,P.O. Box 873,South Burlington,VT,32036,2,2,20042.77,40.17,23,15300058-1,828625-2906,123-45-678,4/1/1980,9/1/2015,Employee,Sales Rep,Sales,Jolene.Burgess@uvu.edu,4/1/2018
+939825,Yoko M.,Pitts,555-555-555,Yoko M..Pitts@uvu.edu,4825 Nec Ave,Meridian,ID,45614,1,1,35251.89,46.64,13,44553589-3,785957-2104,123-45-678,5/1/1980,8/1/2015,Employee,Sales Rep,Sales,Pitts@uvu.edu,5/1/2018
+379767,Jin W.,Morrison,555-555-555,Jin.W.Morrison@uvu.edu,8628 Id St.,Milwaukee,WI,80356,3,1,64467.1,82.98,33,21038669-6,654904-8491,123-45-678,6/1/1980,7/1/2015,Employee,Sales Rep,Sales,Jin.W.Morrison@uvu.edu,6/1/2018
+900100,Sopoline,Bullock,555-555-555,Sopoline.Bullock@uvu.edu,4963 Nisl. St. Ap #579,Idaho Falls,ID,65094,1,2,81929.49,42.76,16,46979340-0,485847-0083,123-45-678,7/1/1980,6/1/2015,Employee,Developer,ENG,Sopoline.Bullock@uvu.edu,7/1/2018
+969829,Bruce A.,Raymond,555-555-555,Bruce.A.Raymond@uvu.edu,65009 Iaculis Road,Juneau,AK,99719,1,2,37697.26,17.33,22,28504011-6,397558-4404,123-45-678,8/1/1980,5/1/2015,Employee,Developer,ENG,Bruce.A.Raymond@uvu.edu,8/1/2018
+283809,Hanae,Dickson,555-555-555,Hanae.Dickson@uvu.edu,1633 Dolor Av.,Dover,DE,61813,1,2,51018.46,91.22,35,48786143-K,295643-0090,123-45-678,9/1/1980,4/1/2015,Employee,Customer Service,CS,Hanae.Dickson@uvu.edu,9/1/2018
+224568,Jenna B.,Strickland,555-555-555,Jenna.B.Strickland@uvu.edu,70156 Rutrum Street,Phoenix,AZ,86207,1,1,57545.39,24.7,23,33878326-4,248847-6397,123-45-678,10/1/1980,3/1/2015,Employee,Sales Rep,Sales,Jenna.B.Strickland@uvu.edu,10/1/2018
+752867,Ruth S.,Haley,555-555-555,Ruth.S.Haley@uvu.edu,6384 Risus Av. Ap #943,Waterbury,CT,58012,2,1,61050.17,42.26,24,12046284-9,399575-5166,123-45-678,11/1/1980,2/1/2015,Employee,Customer Service,CS,Ruth.S.Haley@uvu.edu,11/1/2018
+163695,Beatrice P.,Ware,555-555-555,Beatrice.P.Ware@uvu.edu,8903 Eget Rd.,Oklahoma City,OK,20552,1,1,46342.01,86.47,17,26387832-9,212804-3003,123-45-678,12/1/1980,1/1/2015,Employee,Customer Service,CS,Beatrice.P.Ware@uvu.edu,12/1/2018
+226423,Randall,Horton,555-555-555,Randall.Horton@uvu.edu,3834 Tortor Av.,Topeka,KS,52541,2,2,40872.6,57.05,31,13255163-4,104934-8350,123-45-678,1/1/1981,12/1/2014,Employee,Sales Rep,Sales,Randall.Horton@uvu.edu,1/1/2019
+349833,Damian,Garrison,555-555-555,Damian.Garrison@uvu.edu,1646 In Street,San Francisco,CA,95787,2,2,99571.55,82.41,19,45550736-7,779184-5410,123-45-678,2/1/1981,11/1/2014,Employee,Customer Service,CS,Damian.Garrison@uvu.edu,2/1/2019
+531061,Alvin,Guerrero,555-555-555,Alvin.Guerrero@uvu.edu,248 Mauris St. Ap #748,Indianapolis,IN,92237,2,2,56430.96,38.42,27,16935557-6,994966-8363,123-45-678,3/1/1981,10/1/2014,Employee,Sales Rep,Sales,Alvin.Guerrero@uvu.edu,3/1/2019
+169927,Alexandra Y.,Duke,555-555-555,Alexandra.Y.Duke@uvu.edu,P.O. Box 727,Springfield,MA,50647,2,2,31631.98,95.73,13,23609043-4,538878-8548,123-45-678,4/1/1981,9/1/2014,Employee,Customer Service,CS,Alexandra.Y.Duke@uvu.edu,4/1/2019
+454912,Sylvester J.,Rowland,555-555-555,Sylvester.J.Rowland@uvu.edu,8628 Pede Ave,Baltimore,MD,93306,1,1,49570.97,25.2,32,5363288-2,339235-5453,123-45-678,5/1/1981,8/1/2014,Employee,Sales Rep,Sales,Sylvester.J.Rowland@uvu.edu,5/1/2019
+285767,Porter,Wolfe,555-555-555,Porter.Wolfe@uvu.edu,4842 Tincidunt Av.,Miami,FL,44875,1,1,41212.83,87.54,22,16506147-0,087434-1662,123-45-678,6/1/1981,7/1/2014,Employee,Customer Service,CS,Porter.Wolfe@uvu.edu,6/1/2019
+674261,Scott T.,Shields,555-555-555,Scott.T.Shields@uvu.edu,8402 Pretium Rd. Ap #163,Grand Rapids,MI,26321,1,1,86913.93,83.43,15,21871936-8,779622-5618,123-45-678,7/1/1981,6/1/2014,Employee,Sales Rep,Sales,Scott.T.Shields@uvu.edu,7/1/2019
+265154,Amir,Mcintosh,555-555-555,Amir.Mcintosh@uvu.edu,83493 Nibh. Ave,West Jordan,UT,40532,3,2,91254.76,67.73,27,8752077-3,866009-0500,123-45-678,8/1/1981,5/1/2014,Employee,Customer Service,CS,Amir.Mcintosh@uvu.edu,8/1/2019
+160769,Grant X.,Mccarthy,555-555-555,Grant.X.Mccarthy@uvu.edu,9846 Arcu. Road,Ketchikan,AK,99634,3,1,36025.38,79.99,11,7117844-7,288413-2164,123-45-678,9/1/1981,4/1/2014,Employee,Sales Rep,Sales,Grant.X.Mccarthy@uvu.edu,9/1/2019
+426824,Mira Y.,Wolf,555-555-555,Mira.Y.Wolf@uvu.edu,37224 Pharetra Ave,Savannah,GA,22329,1,2,45576.8,26.99,34,12666803-1,158217-3462,123-45-678,10/1/1981,3/1/2014,Employee,Customer Service,CS,Mira.Y.Wolf@uvu.edu,10/1/2019
+502141,Brock,Sandoval,555-555-555,Brock.Sandoval@uvu.edu,4882 Consectetuer Street,Wyoming,WY,15840,2,1,58436.75,26.25,32,13977869-3,906688-1963,123-45-678,11/1/1981,2/1/2014,Employee,Sales Rep,Sales,Brock.Sandoval@uvu.edu,11/1/2019
+934003,Kelsey K.,Saunders,555-555-555,Kelsey.K.Saunders@uvu.edu,9920 Aliquam Av. Ap #128,Salt Lake City,UT,97100,1,1,42548.72,31.24,18,37723944-K,769125-4564,123-45-678,12/1/1981,1/1/2014,Employee,Developer,ENG,Kelsey.K.Saunders@uvu.edu,12/1/2019
+377013,Teagan,Goodwin,555-555-555,Teagan.Goodwin@uvu.edu,P.O. Box 317,Akron,OH,66603,3,2,69765.24,84.73,13,24639186-6,433898-4976,123-45-678,1/1/1982,12/1/2013,Employee,Developer,ENG,Teagan.Goodwin@uvu.edu,1/1/2020
