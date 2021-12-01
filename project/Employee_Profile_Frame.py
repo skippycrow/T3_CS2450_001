@@ -55,7 +55,7 @@ class EmployeeProfile(tk.Frame):
         tk.Button(self, text = "Back", command = self.clicked_back).grid(row = 21, column = 3)
 
         #If full view not shown
-        if not self.show_full_view():
+        if not self.show_permission_view():
             #Set weight to surrounding row/col to center content on frame
             self.grid_rowconfigure(0, weight = 1)
             self.grid_rowconfigure(22, weight = 1)
@@ -63,7 +63,7 @@ class EmployeeProfile(tk.Frame):
             self.grid_columnconfigure(4, weight = 1)
 
         #If permission level met
-        if self.show_full_view():
+        if self.show_permission_view():
             #Style frame with permission widgets
             tk.Label(self, text = ' ').grid(row = 7, column = 1, sticky = tk.W)
             tk.Label(self, text = "Address: " + self.address).grid(row = 8, column = 1, sticky = tk.W)
@@ -73,7 +73,7 @@ class EmployeeProfile(tk.Frame):
             tk.Label(self, text = "Hourly: " + self.hourly).grid(row = 10, column = 3, sticky = tk.W)
             tk.Label(self, text = "Commission: " + self.commission).grid(row = 10, column = 4, sticky = tk.W)
             tk.Label(self, text = "Routing#: " + self.routing + " " + "Account#: " + self.account).grid(row = 11, column = 1, sticky = tk.W)
-            tk.Button(self, text = "Edit Employee", command = self.clicked_back).grid(row = 21, column = 2)
+            tk.Button(self, text = "Edit Employee", command = lambda: self.controller.present_frame("EditEmployee")).grid(row = 21, column = 2)
 
             #Set weight to surrounding row/col to center content on frame
             self.grid_rowconfigure(0, weight = 1)
@@ -81,7 +81,7 @@ class EmployeeProfile(tk.Frame):
             self.grid_columnconfigure(0, weight = 1)
             self.grid_columnconfigure(5, weight = 1)
 
-    def show_full_view(self):
+    def show_permission_view(self):
         #If employee is viewing themselves
         if self.controller.app_data["EmployeeListFrame_showSelectedEmployee"] is False:
             return True
