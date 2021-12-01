@@ -1,5 +1,4 @@
 ID,name_first,name_last,contact_phone,contact_email,address_street,address_city,address_state,zip_code,classification,pay_method,salary,hourly,commission_rate,routing_number,account,social_security,birthday,start_date,permission,title,dept,email,end_date
-0,None,None,555-555-555,None@uvu.edu,000 None St.,None,NA,00000,1,1,1,1,1,00000000-0,000000-0000,123-45-678,1/1/0000,1/1/0000,Employee,None,None,None@uvu.edu,1/1/0000
 688997,Karina,Gay,555-555-555,Karina.Gay@uvu.edu,998 Vitae St.,Atlanta,GA,45169,1,1,45884.99,46.92,34,30417353-K,465794-3611,123-45-678,1/1/1980,12/1/2012,Admin,CEO,EXEC,Karina.Gay@uvu.edu,1/1/2018
 522759,TaShya D.,Snow,555-555-555,TaShya.D.Snow@uvu.edu,2624 Hendrerit St.,College,AK,99789,2,2,50005.5,68.13,25,36644938-8,244269-0000,123-45-678,2/1/1980,11/1/2013,Admin,CTO,EXEC,TaShya.D.Snow@uvu.edu,2/1/2018
 165966,Rooney,Alvarado,555-555-555,Rooney.Alvarado@uvu.edu,4963 Nisl. St. Ap #185,Gillette,WY,20226,3,2,34532.37,21.53,24,37324307-8,422046-0739,123-45-678,3/1/1980,10/1/2015,Employee,Customer Service,CS,TaShya.D.Snow@uvu.edu,3/1/2018
@@ -25,3 +24,4 @@ ID,name_first,name_last,contact_phone,contact_email,address_street,address_city,
 502141,Brock,Sandoval,555-555-555,Brock.Sandoval@uvu.edu,4882 Consectetuer Street,Wyoming,WY,15840,2,1,58436.75,26.25,32,13977869-3,906688-1963,123-45-678,11/1/1981,2/1/2014,Employee,Sales Rep,Sales,Brock.Sandoval@uvu.edu,11/1/2019
 934003,Kelsey K.,Saunders,555-555-555,Kelsey.K.Saunders@uvu.edu,9920 Aliquam Av. Ap #128,Salt Lake City,UT,97100,1,1,42548.72,31.24,18,37723944-K,769125-4564,123-45-678,12/1/1981,1/1/2014,Employee,Developer,ENG,Kelsey.K.Saunders@uvu.edu,12/1/2019
 377013,Teagan,Goodwin,555-555-555,Teagan.Goodwin@uvu.edu,P.O. Box 317,Akron,OH,66603,3,2,69765.24,84.73,13,24639186-6,433898-4976,123-45-678,1/1/1982,12/1/2013,Employee,Developer,ENG,Teagan.Goodwin@uvu.edu,1/1/2020
+0,None,None,555-555-555,None@uvu.edu,000 None St.,None,NA,00000,1,1,1,1,1,00000000-0,000000-0000,123-45-678,1/1/0000,1/1/0000,Employee,None,None,None@uvu.edu,1/1/0000
