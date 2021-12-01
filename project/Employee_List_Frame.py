@@ -1,63 +1,45 @@
 import tkinter as tk
-import PayReport as PR
 from tkinter import messagebox as msg
-
+import PayReport as PR
 
 # TODO
 # have the result box be populated by employee class
 # Search button doesn't utilize the database
 
-
 class EmployeeList(tk.Frame):
     def __init__(self, parent, controller):
+        #Initialize tk
         tk.Frame.__init__(self, parent)
+
+        #Initialize controller
         self.controller = controller
-        tk.Label(self, text="Search Employee ", fg="black", font="none 12 bold").grid(row=1, column=1, sticky=tk.W)
+
+        #Initialize variables
         self.search_results = []
         self.selected_employee = None
         self.sv = tk.StringVar()
         self.sv.trace_add("write", self.search_employee)
 
         ### TODO: impmlement the employee database 
-        print(self.controller.database.employees)
-        ###
 
-        # Search Box
-        self.search_box = tk.Entry(self, textvariable=self.sv, width=73, bg="white")
-        self.search_box.grid(row=2, column=1, sticky=tk.NW)
-
-        # Search Button
-        self.clear_button = tk.Button(self, text="Clear", width=20, bg="white", command=self.clear_search)
-        self.clear_button.grid(row=2, column=1, sticky=tk.NE)
-
-        # Result Box
-        self.result_box = tk.Listbox(self, width=100, bg="white")
-        self.result_box.grid(row=3, column=1, sticky=tk.NW)
-
-        # Add employee Button
-        self.add_employee_button = tk.Button(self, text="Add Employee", width=20, bg="white",
-                                             command=self.addEmployeeFrame)
-        self.add_employee_button.grid(row=4, column=1, sticky=tk.NW)
-
-        # Employee profile button
-        self.employee_profile_button = tk.Button(self, text="Employee Profile", width=20, bg="white",
-                                                 command=self.employeeProfileFrame)
-        self.employee_profile_button.grid(row=5, column=1, sticky=tk.NW)
-
-        # Payroll Button
+        #Style frame
+        tk.Label(self, text = "Search Employee ", fg = "black", font = "none 12 bold").grid(row = 1, column = 1, sticky = tk.W)
+        self.search_box = tk.Entry(self, textvariable = self.sv, width = 73, bg = "white")
+        self.search_box.grid(row = 2, column = 1, sticky = tk.NW)
+        self.clear_button = tk.Button(self, text = "Clear", width = 20, bg = "white", command = self.clear_search)
+        self.clear_button.grid(row = 2, column = 1, sticky = tk.NE)
+        self.result_box = tk.Listbox(self, width = 100, bg = "white")
+        self.result_box.grid(row = 3, column = 1, sticky = tk.NW)
+        self.add_employee_button = tk.Button(self, text = "Add Employee", width = 20, bg = "white", command = self.clicked_add_employee)
+        self.add_employee_button.grid(row = 4, column = 1, sticky = tk.NW)
+        self.employee_profile_button = tk.Button(self, text = "Employee Profile", width = 20, bg = "white", command = self.clicked_profile)
+        self.employee_profile_button.grid(row = 5, column = 1, sticky = tk.NW)
         # ! self.payroll_button = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = lambda: controller.preset_frame("payrollFrame"))
-        self.payroll_button = tk.Button(self, text="Payroll", width=20, bg="white",
-                                        command=lambda: PR.pay_roll(controller.database))
-        self.payroll_button.grid(row=4, column=1, sticky=tk.E)
-
-        # Export employee button
-        self.export_employee_button = tk.Button(self, text="Export Employee", width=20, bg="white",
-                                                command=lambda: controller.present_frame("exportEmployee"))
-        self.export_employee_button.grid(row=5, column=1, sticky=tk.E)
-
-        # back button
-        tk.Button(self, text="Back", width=20, bg="white",
-                  command=lambda: controller.present_frame("LandingFrame")).grid(column=1, row=6)
+        self.payroll_button = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = lambda: PR.pay_roll(controller.database))
+        self.payroll_button.grid(row = 4, column = 1, sticky = tk.E)
+        self.export_employee_button = tk.Button(self, text = "Export Employee", width = 20, bg = "white", command = self.clicked_export)
+        self.export_employee_button.grid(row = 5, column = 1, sticky = tk.E)
+        tk.Button(self, text = "Back", width = 20, bg = "white", command = self.clicked_back).grid(column = 1, row = 6)
 
         #Set weight to surrounding row/col to center buttons on frame
         self.grid_rowconfigure(0, weight = 1)
@@ -68,16 +50,12 @@ class EmployeeList(tk.Frame):
         # Called to set up the employee list
         self.search_employee()
 
-        # copys the selected employee to selectedEmployee
-
     def update(self):
         pass
 
     def select_employee(self, event):
+        #Get selected employee
         self.result_box.get(tk.ACTIVE)
-
-    def clear_search(self):
-        self.sv.set("")
 
     # Search function
     def search_employee(self, *args):
@@ -94,21 +72,49 @@ class EmployeeList(tk.Frame):
                 self.search_results.append([empFirstName + ' ' + empLastName, empNum])
         self.update_list()
 
-        # Updates the listbox to display the correct list of names.
-
+    # Updates the listbox to display the correct list of names.
     def update_list(self):
         self.result_box.delete(0, tk.END)
         for item in self.search_results:
             insert = (item[0] + "           ID#" + item[1])
             self.result_box.insert(tk.END, insert)
 
-        # Transition to add employee page
+    def clear_search(self):
+        self.sv.set("")
 
-    def addEmployeeFrame(self):
-        self.controller.present_frame("AddEmployee")
+    def clicked_add_employee(self):
+        #If admin
+        if self.controller.app_data["LoginFrame_permission"] == "Admin":
+            #Proceed to add employee frame
+            self.controller.present_frame("AddEmployee")
+        #Not admin
+        else:
+            #Show permission warning
+            msg.showerror("Access Denied", "You do not have permission for this action")
 
-        # Transition to the employee ProfileFrame
+    def clicked_profile(self):
+        #Set selected employee in app data
+        self.controller.app_data["EmployeeListFrame_selectedEmployeeID"] = (self.result_box.get(tk.ACTIVE).split("ID#")[1])
 
-    def employeeProfileFrame(self):
-        self.controller.app_data["selected_Employee"] = (self.result_box.get(tk.ACTIVE).split("ID#")[1])
+        #Set show selected employee flag in app data
+        self.controller.app_data["EmployeeListFrame_showSelectedEmployee"] = True
+
+        #Proceed to employee profile
         self.controller.present_frame("EmployeeProfile")
+
+    def clicked_export(self):
+        #Proceed to export employee frame
+        #self.controller.present_frame("ExportEmployee")
+
+        #Temporary functionality
+        msg.showinfo("Export", "Employee Exported")
+
+    def clicked_back(self):
+        #Reset show selected employee flag
+        self.controller.app_data["EmployeeListFrame_showSelectedEmployee"] = False
+
+        #Clear search bar
+        self.clear_search()
+
+        #Proceed to landing page
+        self.controller.present_frame("LandingFrame")
