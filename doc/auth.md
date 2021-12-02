@@ -30,4 +30,5 @@ The `auth` library has two helper functions:
 
 * `resave_cache(path)`:
     saves password has data to a csv at `path`
+    
     **Note: 'passwords_real.csv' will not be updated, as that file is for interal referencing, and would not be used in an actual deployment. If you wish to commit changes to the password database, this file must be edited manually.**
