@@ -18,3 +18,16 @@ The `auth` library has two helper functions:
     * `0`: the password is correct
     * `1`: the password is not correct
     * `2`: the `_id` is not found in the data
+
+* `add_password(_id, _pass)`:
+    Adds hash of password `_pass` and employee id `_id` to the password data, if that id is not already present.
+
+* `edit_password(_id, _new_pass)`:
+    sets the password of employee with given `_id` to `_new_pass`, as long as that id is present
+
+* `purge_password(_id)`:
+    removes `_id` from database
+
+* `resave_cache(path)`:
+    saves password has data to a csv at `path`
+    **Note: 'passwords_real.csv' will not be updated, as that file is for interal referencing, and would not be used in an actual deployment. If you wish to commit changes to the password database, this file must be edited manually.**
