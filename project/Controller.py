@@ -51,12 +51,6 @@ class EmployeeApp(tk.Tk):
         #Show the login page
         self.present_frame("LoginFrame")
 
-    def add_data(self, frame_subj, data):
-        self.app_data[frame_subj] = data
-
-    def remove_data(self, frame_subj):
-        del self.app_data[frame_subj]
-
     def present_frame(self, page_name, window_title_override=''):
         #Update the frame if it needs to be ; mainly for updating employee profile
         self.frames[page_name].update()
