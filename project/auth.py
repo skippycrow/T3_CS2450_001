@@ -53,4 +53,12 @@ def purge_password(_id):
 
 
 def resave_cache(path):
-    pass # TODO
+    with open(path, mode='w') as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=['id', 'pw_hash'])
+        writer.writeheader()
+        for _id, _pw_hash in passwords.items():
+            row = {
+                    'id' : _id,
+                    '_pw_hash' : _pw_hash,
+                }
+            writer.writerow(row)
