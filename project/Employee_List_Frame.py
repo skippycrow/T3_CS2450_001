@@ -35,7 +35,7 @@ class EmployeeList(tk.Frame):
         self.employee_profile_button = tk.Button(self, text = "Employee Profile", width = 20, bg = "white", command = self.clicked_profile)
         self.employee_profile_button.grid(row = 5, column = 1, sticky = tk.NW)
         # ! self.payroll_button = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = lambda: controller.preset_frame("payrollFrame"))
-        self.payroll_button = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = lambda: PR.pay_roll(controller.database))
+        self.payroll_button = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = self.clicked_payroll)
         self.payroll_button.grid(row = 4, column = 1, sticky = tk.E)
         self.export_employee_button = tk.Button(self, text = "Export Employee", width = 20, bg = "white", command = self.clicked_export)
         self.export_employee_button.grid(row = 5, column = 1, sticky = tk.E)
@@ -89,7 +89,7 @@ class EmployeeList(tk.Frame):
             self.controller.present_frame("AddEmployee")
         #Not admin
         else:
-            #Show permission warning
+            #Show permission error
             msg.showerror("Access Denied", "You do not have permission for this action")
 
     def clicked_profile(self):
@@ -103,11 +103,26 @@ class EmployeeList(tk.Frame):
         self.controller.present_frame("EmployeeProfile")
 
     def clicked_export(self):
-        #Proceed to export employee frame
-        #self.controller.present_frame("ExportEmployee")
+        #If admin
+        if self.controller.app_data["LoginFrame_permission"] == "Admin":
+            #Proceed to export employee frame
+            #self.controller.present_frame("ExportEmployee")
+            #Temporary functionality
+            msg.showinfo("Export", "Employee Exported")
+        #Not admin
+        else:
+            #Show permission error
+            msg.showerror("Acess Denied", "You do not have permission for this action")
 
-        #Temporary functionality
-        msg.showinfo("Export", "Employee Exported")
+    def clicked_payroll(self):
+        #If admin
+        if self.controller.app_data["LoginFrame_permission"] == "Admin":
+            #Run payroll
+            PR.pay_roll(controller.database)
+        #Not admin
+        else:
+            #Show permission error
+            msg.showerror("Access Denied", "You do not have permission for this action")
 
     def clicked_back(self):
         #Reset show selected employee flag
