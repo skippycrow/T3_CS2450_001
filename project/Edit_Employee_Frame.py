@@ -87,10 +87,10 @@ class EditEmployee(tk.Frame):
 
         #If not admin
         if not self.controller.app_data["LoginFrame_permission"] == "Admin":
-            #Buttons
+            #Style frame
             self.submit_button = tk.Button(self, text = "Submit", command = self.save_info)
             self.submit_button.grid(row = 6, column = 2, pady = 15)
-            self.cancel_button = tk.Button(self, text = "Cancel", command = self.click_cancel)
+            self.cancel_button = tk.Button(self, text = "Cancel", command = self.clicked_cancel)
             self.cancel_button.grid(row = 6, column = 1)
 
             #Set weight to surrounding row/col to center buttons on frame
@@ -167,7 +167,7 @@ class EditEmployee(tk.Frame):
             #Buttons
             self.submit_button = tk.Button(self, text = "Submit", command = self.save_info)
             self.submit_button.grid(row = 10, column = 2, pady = 15)
-            self.cancel_button = tk.Button(self, text = "Cancel", command = self.click_cancel)
+            self.cancel_button = tk.Button(self, text = "Cancel", command = self.clicked_cancel)
             self.cancel_button.grid(row = 10, column = 1)
 
             #Set weight to surrounding row/col to center buttons on frame
@@ -175,12 +175,6 @@ class EditEmployee(tk.Frame):
             self.grid_rowconfigure(11, weight = 1)
             self.grid_columnconfigure(0, weight = 1)
             self.grid_columnconfigure(7, weight = 1)
-
-    def check_permission(self, id):
-        """returns true if logged in employee matches profile id#
-        returns true if logged in as administrator
-        returns false otherwise"""
-        return False
 
     def show_hide_bank(self, *args):
         """Shows or hide the values for Direct Deposit based on input"""
@@ -277,5 +271,12 @@ class EditEmployee(tk.Frame):
         #Return to employee list
         self.controller.present_frame("EmployeeList")
 
-    def click_cancel(self):
-        self.controller.present_frame("EmployeeList")
+    def clicked_cancel(self):
+        #If selected employee is not shown
+        if self.controller.app_data["EmployeeListFrame_showSelectedEmployee"] == False:
+           #Proceed to employee profile
+           self.controller.present_frame("EmployeeProfile")
+        #Selected employee is shown
+        else:
+            #Proceed to employee list
+            self.controller.present_frame("EmployeeList")
