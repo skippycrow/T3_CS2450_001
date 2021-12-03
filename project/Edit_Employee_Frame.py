@@ -90,7 +90,7 @@ class EditEmployee(tk.Frame):
             #Style frame
             self.submit_button = tk.Button(self, text = "Submit", command = self.save_info)
             self.submit_button.grid(row = 6, column = 2, pady = 15)
-            self.cancel_button = tk.Button(self, text = "Cancel", command = self.clicked_cancel)
+            self.cancel_button = tk.Button(self, text = "Cancel", command = lambda: self.controller.present_frame("EmployeeProfile"))
             self.cancel_button.grid(row = 6, column = 1)
 
             #Set weight to surrounding row/col to center buttons on frame
@@ -167,7 +167,7 @@ class EditEmployee(tk.Frame):
             #Buttons
             self.submit_button = tk.Button(self, text = "Submit", command = self.save_info)
             self.submit_button.grid(row = 10, column = 2, pady = 15)
-            self.cancel_button = tk.Button(self, text = "Cancel", command = self.clicked_cancel)
+            self.cancel_button = tk.Button(self, text = "Cancel", command = lambda: self.controller.present_frame("EmployeeProfile"))
             self.cancel_button.grid(row = 10, column = 1)
 
             #Set weight to surrounding row/col to center buttons on frame
@@ -268,15 +268,5 @@ class EditEmployee(tk.Frame):
         #Show saved message
         msg.showinfo(title = "Saved", message = "Employee saved")
 
-        #Return to employee list
-        self.controller.present_frame("EmployeeList")
-
-    def clicked_cancel(self):
-        #If selected employee is not shown
-        if self.controller.app_data["EmployeeListFrame_showSelectedEmployee"] == False:
-           #Proceed to employee profile
-           self.controller.present_frame("EmployeeProfile")
-        #Selected employee is shown
-        else:
-            #Proceed to employee list
-            self.controller.present_frame("EmployeeList")
+        #Return to employee profile
+        self.controller.present_frame("EmployeeProfile")
