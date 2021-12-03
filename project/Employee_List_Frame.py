@@ -22,6 +22,12 @@ class EmployeeList(tk.Frame):
 
         ### TODO: impmlement the employee database 
 
+    def update(self):
+        #For each widget in frame
+        for widget in self.winfo_children():
+            #Destroy the widget
+            widget.destroy()
+
         #Style frame
         tk.Label(self, text = "Search Employee ", fg = "black", font = "none 12 bold").grid(row = 1, column = 1, sticky = tk.W)
         self.search_box = tk.Entry(self, textvariable = self.sv, width = 73, bg = "white")
@@ -30,28 +36,35 @@ class EmployeeList(tk.Frame):
         self.clear_button.grid(row = 2, column = 1, sticky = tk.NE)
         self.result_box = tk.Listbox(self, width = 100, bg = "white")
         self.result_box.grid(row = 3, column = 1, sticky = tk.NW)
-        self.add_employee_button = tk.Button(self, text = "Add Employee", width = 20, bg = "white", command = self.clicked_add_employee)
-        self.add_employee_button.grid(row = 4, column = 1, sticky = tk.NW)
         self.employee_profile_button = tk.Button(self, text = "Employee Profile", width = 20, bg = "white", command = self.clicked_profile)
         self.employee_profile_button.grid(row = 5, column = 1, sticky = tk.NW)
-        # ! self.payroll_button = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = lambda: controller.preset_frame("payrollFrame"))
-        self.payroll_button = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = self.clicked_payroll)
-        self.payroll_button.grid(row = 4, column = 1, sticky = tk.E)
-        self.export_employee_button = tk.Button(self, text = "Export Employee", width = 20, bg = "white", command = self.clicked_export)
-        self.export_employee_button.grid(row = 5, column = 1, sticky = tk.E)
-        tk.Button(self, text = "Back", width = 20, bg = "white", command = self.clicked_back).grid(column = 1, row = 6)
+        tk.Button(self, text = "Back", width = 20, bg = "white", command = self.clicked_back).grid(row = 6, column = 1)
 
-        #Set weight to surrounding row/col to center buttons on frame
-        self.grid_rowconfigure(0, weight = 1)
-        self.grid_rowconfigure(7, weight = 1)
-        self.grid_columnconfigure(0, weight = 1)
-        self.grid_columnconfigure(2, weight = 1)
+        #If full view not shown
+        if not self.show_permission_view():
+            #Set weight to surrounding row/col to center content on frame
+            self.grid_rowconfigure(0, weight = 1)
+            self.grid_rowconfigure(7, weight = 1)
+            self.grid_columnconfigure(0, weight = 1)
+            self.grid_columnconfigure(2, weight = 1)
+        #Full view shown
+        else:
+            #Style page
+            self.add_employee_button = tk.Button(self, text = "Add Employee", width = 20, bg = "white", command = lambda: self.controller.present_frame("AddEmployee"))
+            self.add_employee_button.grid(row = 4, column = 1, sticky = tk.NW)
+            self.payroll_button = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = lambda: PR.pay_roll(controller.database))
+            self.payroll_button.grid(row = 4, column = 1, sticky = tk.E)
+            self.export_employee_button = tk.Button(self, text = "Export Employee", width = 20, bg = "white", command = self.clicked_export)
+            self.export_employee_button.grid(row = 5, column = 1, sticky = tk.E)
+
+            #Set weight to surrounding row/col to center content on frame
+            self.grid_rowconfigure(0, weight = 1)
+            self.grid_rowconfigure(7, weight = 1)
+            self.grid_columnconfigure(0, weight = 1)
+            self.grid_columnconfigure(2, weight = 1)
 
         # Called to set up the employee list
         self.search_employee()
-
-    def update(self):
-        pass
 
     def select_employee(self, event):
         #Get selected employee
@@ -82,15 +95,13 @@ class EmployeeList(tk.Frame):
     def clear_search(self):
         self.sv.set("")
 
-    def clicked_add_employee(self):
+    def show_permission_view(self):
         #If admin
         if self.controller.app_data["LoginFrame_permission"] == "Admin":
-            #Proceed to add employee frame
-            self.controller.present_frame("AddEmployee")
+            return True
         #Not admin
         else:
-            #Show permission error
-            msg.showerror("Access Denied", "You do not have permission for this action")
+            return False
 
     def clicked_profile(self):
         #Set selected employee in app data
@@ -103,26 +114,10 @@ class EmployeeList(tk.Frame):
         self.controller.present_frame("EmployeeProfile")
 
     def clicked_export(self):
-        #If admin
-        if self.controller.app_data["LoginFrame_permission"] == "Admin":
-            #Proceed to export employee frame
-            #self.controller.present_frame("ExportEmployee")
-            #Temporary functionality
-            msg.showinfo("Export", "Employee Exported")
-        #Not admin
-        else:
-            #Show permission error
-            msg.showerror("Acess Denied", "You do not have permission for this action")
-
-    def clicked_payroll(self):
-        #If admin
-        if self.controller.app_data["LoginFrame_permission"] == "Admin":
-            #Run payroll
-            PR.pay_roll(controller.database)
-        #Not admin
-        else:
-            #Show permission error
-            msg.showerror("Access Denied", "You do not have permission for this action")
+        #Proceed to export employee frame
+        #self.controller.present_frame("ExportEmployee")
+        #Temporary functionality
+        msg.showinfo("Export", "Employee Exported")
 
     def clicked_back(self):
         #Reset show selected employee flag
