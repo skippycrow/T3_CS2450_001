@@ -47,10 +47,10 @@ class EmployeeProfile(tk.Frame):
         #Style frame
         tk.Label(self, text = self.name, font = "none 18 bold").grid(row = 1, column = 1, sticky = tk.W)
         tk.Label(self, text = self.e_id_to_present, font = "none 12 bold").grid(row = 2, column = 1, sticky = tk.W)
-        tk.Label(self, text = "Position: " + self.title, font = "none 12 bold").grid(row = 3, column = 1, sticky = tk.W)
-        tk.Label(self, text = "Department: " + self.dept, font = "none 12 bold").grid(row = 3, column = 3, sticky = tk.W)
-        tk.Label(self, text = "Office Phone: " + self.phone).grid(row = 4, column = 1, columnspan = 1, sticky = tk.W)
-        tk.Label(self, text = "Email: " + self.email).grid(row = 4, column = 3, columnspan = 1, sticky = tk.W)
+        tk.Label(self, text = "Position: " + str(self.title), font = "none 12 bold").grid(row = 3, column = 1, sticky = tk.W)
+        tk.Label(self, text = "Department: " + str(self.dept), font = "none 12 bold").grid(row = 3, column = 3, sticky = tk.W)
+        tk.Label(self, text = "Office Phone: " + str(self.phone)).grid(row = 4, column = 1, columnspan = 1, sticky = tk.W)
+        tk.Label(self, text = "Email: " + str(self.email)).grid(row = 4, column = 3, columnspan = 1, sticky = tk.W)
         tk.Label(self, text = ' ').grid(row = 6, column = 1)
         tk.Button(self, text = "Back", command = self.clicked_back).grid(row = 21, column = 3)
 
@@ -65,13 +65,13 @@ class EmployeeProfile(tk.Frame):
         else:
             #Style frame with permission widgets
             tk.Label(self, text = ' ').grid(row = 7, column = 1, sticky = tk.W)
-            tk.Label(self, text = "Address: " + self.address).grid(row = 8, column = 1, sticky = tk.W)
-            tk.Label(self, text = "Employee Classification: " + self.classification).grid(row = 9, column = 1, sticky = tk.W)
-            tk.Label(self, text = "Pay Method: " + self.pay_method).grid(row = 10, column = 1, sticky = tk.W)
-            tk.Label(self, text = "Salary: " + self.salary).grid(row = 10, column = 2, sticky = tk.W)
-            tk.Label(self, text = "Hourly: " + self.hourly).grid(row = 10, column = 3, sticky = tk.W)
-            tk.Label(self, text = "Commission: " + self.commission).grid(row = 10, column = 4, sticky = tk.W)
-            tk.Label(self, text = "Routing#: " + self.routing + " " + "Account#: " + self.account).grid(row = 11, column = 1, sticky = tk.W)
+            tk.Label(self, text = "Address: " + str(self.address)).grid(row = 8, column = 1, sticky = tk.W)
+            tk.Label(self, text = "Employee Classification: " + str(self.classification)).grid(row = 9, column = 1, sticky = tk.W)
+            tk.Label(self, text = "Pay Method: " + str(self.pay_method)).grid(row = 10, column = 1, sticky = tk.W)
+            tk.Label(self, text = "Salary: " + str(self.salary)).grid(row = 10, column = 2, sticky = tk.W)
+            tk.Label(self, text = "Hourly: " + str(self.hourly)).grid(row = 10, column = 3, sticky = tk.W)
+            tk.Label(self, text = "Commission: " + str(self.commission)).grid(row = 10, column = 4, sticky = tk.W)
+            tk.Label(self, text = "Routing#: " + str(self.routing) + " " + "Account#: " + str(self.account)).grid(row = 11, column = 1, sticky = tk.W)
             tk.Button(self, text = "Edit Employee", command = lambda: self.controller.present_frame("EditEmployee")).grid(row = 21, column = 2)
 
             #Set weight to surrounding row/col to center content on frame
