@@ -61,9 +61,8 @@ class EmployeeProfile(tk.Frame):
             self.grid_rowconfigure(22, weight = 1)
             self.grid_columnconfigure(0, weight = 1)
             self.grid_columnconfigure(4, weight = 1)
-
-        #If permission level met
-        if self.show_permission_view():
+        #Permission level met
+        else:
             #Style frame with permission widgets
             tk.Label(self, text = ' ').grid(row = 7, column = 1, sticky = tk.W)
             tk.Label(self, text = "Address: " + self.address).grid(row = 8, column = 1, sticky = tk.W)
@@ -93,8 +92,14 @@ class EmployeeProfile(tk.Frame):
             return False
 
     def clicked_back(self):
-        #Reset show selected employee flag
-        self.controller.app_data["EmployeeListFrame_showSelectedEmployee"] = False
+        #If selected employee is not shown
+        if self.controller.app_data["EmployeeListFrame_showSelectedEmployee"] == False:
+           #Proceed to landing frame
+           self.controller.present_frame("LandingFrame")
+        #Selected employee is shown
+        else:
+            #Reset show selected employee flag in app data
+            self.controller.app_data["EmployeeListFrame_showSelectedEmployee"] = False
 
-        #Proceed to landing frame
-        self.controller.present_frame("LandingFrame")
+            #Proceed to employee list
+            self.controller.present_frame("EmployeeList")
