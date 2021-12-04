@@ -20,6 +20,15 @@ class EditEmployee(tk.Frame):
             #Destroy the widget
             widget.destroy()
 
+        #If accessed employee profile from EmployeeList frame with another employee selected
+        if self.controller.app_data["EmployeeListFrame_showSelectedEmployee"]:
+            #Set employee to present as the selected employee from the EmployeeList frame
+            self.e_id_to_present = self.controller.app_data["EmployeeListFrame_selectedEmployeeID"]
+        #Employee profile accessed regularly through the landing page
+        else:
+            #Set employee to present as the currently logged in user
+            self.e_id_to_present = self.controller.app_data["LoginFrame_userID"]
+
         #Style frame
         self.title_label = tk.Label(self, text = "Edit Employee")
         self.title_label.grid(row = 1, columnspan = 6, pady = 10, sticky = tk.N)
@@ -28,46 +37,55 @@ class EditEmployee(tk.Frame):
         self.edit_emp_id_label.grid(row = 2, column = 1, pady = 5, sticky = tk.W)
         self.edit_emp_id_entry = tk.Entry(self, width = 15, bg = "white")
         self.edit_emp_id_entry.grid(row = 2, column = 2)
+        self.edit_emp_id_entry.insert(0, str(self.e_id_to_present))
         #First Name
         self.edit_first_name_label = tk.Label(self, text = "First Name:")
         self.edit_first_name_label.grid(row = 2, column = 3, pady = 5, sticky = tk.W)
         self.edit_first_name_entry = tk.Entry(self, width = 15, bg = "white")
         self.edit_first_name_entry.grid(row = 2, column = 4)
+        self.edit_first_name_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "name_first")))
         #Last Name
         self.edit_last_name_label = tk.Label(self, text =" Last Name:")
         self.edit_last_name_label.grid(row = 2, column = 5, pady = 5, sticky = tk.W)
         self.edit_last_name_entry = tk.Entry(self, width = 15, bg = "white")
         self.edit_last_name_entry.grid(row = 2, column = 6)
+        self.edit_last_name_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "name_last")))
         #Street
         self.edit_street_label = tk.Label(self, text = "Street:")
         self.edit_street_label.grid(row = 3, column = 1, pady = 5, sticky = tk.W)
         self.edit_street_entry = tk.Entry(self, width = 15, bg = "white")
         self.edit_street_entry.grid(row = 3, column = 2)
+        self.edit_street_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "address_street")))
         #City
         self.edit_city_label = tk.Label(self, text = "City:")
         self.edit_city_label.grid(row = 3, column = 3, pady = 5, sticky = tk.W)
         self.edit_city_entry = tk.Entry(self, width = 15, bg = "white")
         self.edit_city_entry.grid(row = 3, column = 4)
+        self.edit_city_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "address_city")))
         #State
         self.edit_state_label = tk.Label(self, text = "State:")
         self.edit_state_label.grid(row = 3, column = 5, pady = 5, sticky = tk.W)
         self.edit_state_entry = tk.Entry(self, width = 15, bg = "white")
         self.edit_state_entry.grid(row = 3, column = 6)
+        self.edit_state_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "address_state")))
         #Zip
         self.edit_zip_label = tk.Label(self, text = "Zip:")
         self.edit_zip_label.grid(row = 4, column = 1, pady = 5, sticky = tk.W)
         self.edit_zip_entry = tk.Entry(self, width = 15, bg = "white")
         self.edit_zip_entry.grid(row = 4, column = 2)
+        self.edit_zip_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "zip_code")))
         #Phone
         self.edit_phone_label = tk.Label(self, text = "Phone:")
         self.edit_phone_label.grid(row = 4, column = 3, pady = 5, sticky = tk.W)
         self.edit_phone_entry = tk.Entry(self, width = 15, bg = "white")
         self.edit_phone_entry.grid(row = 4, column = 4)
+        self.edit_phone_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "contact_phone")))
         #Email
         self.edit_email_label = tk.Label(self, text = "Email:")
         self.edit_email_label.grid(row = 4, column = 5, pady = 5, sticky = tk.W)
         self.edit_email_entry = tk.Entry(self, width = 15, bg = "white")
         self.edit_email_entry.grid(row = 4, column = 6)
+        self.edit_email_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "contact_email")))
         #Pay Method
         self.edit_payment_method_label = tk.Label(self, text = "Pay Method:").grid(row = 5, column = 1, pady = 5, sticky = tk.W)
         self.edit_payment_method_entry = tk.OptionMenu(self, self.pay_method, "Mail", "ACH")
@@ -79,11 +97,13 @@ class EditEmployee(tk.Frame):
         self.edit_routing_number_label.grid(row = 5, column = 3, pady = 5, sticky = tk.W)
         self.edit_routing_number_entry = tk.Entry(self, width = 15, bg = "white")
         self.edit_routing_number_entry.grid(row = 5, column = 4)
+        self.edit_routing_number_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "routing_number")))
         #Account Number
         self.edit_account_number_label = tk.Label(self, text = "Account #:")
         self.edit_account_number_label.grid(row = 5, column = 5, pady = 5, sticky = tk.W)
         self.edit_account_number_entry = tk.Entry(self, width = 15, bg = "white")
         self.edit_account_number_entry.grid(row = 5, column = 6)
+        self.edit_account_number_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "account")))
 
         #If not admin
         if not self.controller.app_data["LoginFrame_permission"] == "Admin":
@@ -133,21 +153,25 @@ class EditEmployee(tk.Frame):
             self.edit_ss_label.grid(row = 7, column = 1, pady = 5, sticky = tk.W)
             self.edit_ss_entry = tk.Entry(self, width = 15, bg = "white")
             self.edit_ss_entry.grid(row = 7, column = 2)
+            self.edit_ss_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "social_security")))
             #Birthday
             self.edit_dob_label = tk.Label(self, text = "DOB:")
             self.edit_dob_label.grid(row = 7, column = 3, pady = 5, sticky = tk.W)
             self.edit_dob_entry = tk.Entry(self, width = 15, bg = "white")
             self.edit_dob_entry.grid(row = 7, column = 4)
+            self.edit_dob_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "birthday")))
             #Start Date
             self.edit_start_date_label = tk.Label(self, text = "Start Date:")
             self.edit_start_date_label.grid(row = 8, column = 1, pady = 5, sticky = tk.W)
             self.edit_start_date_entry = tk.Entry(self, width = 15, bg = "white")
             self.edit_start_date_entry.grid(row = 8, column = 2)
+            self.edit_start_date_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "start_date")))
             #End Date
             self.edit_end_date_label = tk.Label(self, text = "End Date:")
             self.edit_end_date_label.grid(row = 8, column = 3, pady = 5, sticky = tk.W)
             self.edit_end_date_entry = tk.Entry(self, width = 15, bg = "white")
             self.edit_end_date_entry.grid(row = 8, column = 4)
+            self.edit_end_date_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "end_date")))
             #Permission
             self.edit_permission_label = tk.Label(self, text = "Permission:")
             self.edit_permission_label.grid(row = 9, column = 1, pady = 5, sticky = tk.W)
@@ -159,11 +183,13 @@ class EditEmployee(tk.Frame):
             self.edit_title_label.grid(row = 9, column = 3, pady = 5, sticky = tk.W)
             self.edit_title_entry = tk.Entry(self, width = 15, bg = "white")
             self.edit_title_entry.grid(row = 9, column = 4)
+            self.edit_title_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "title")))
             #Department
             self.edit_dept_label = tk.Label(self, text = "Dept:")
             self.edit_dept_label.grid(row = 9, column = 5, pady = 5, sticky = tk.W)
             self.edit_dept_entry = tk.Entry(self, width = 15, bg = "white")
             self.edit_dept_entry.grid(row = 9, column = 6)
+            self.edit_dept_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "dept")))
             #Buttons
             self.submit_button = tk.Button(self, text = "Submit", command = self.save_info)
             self.submit_button.grid(row = 10, column = 2, pady = 15)
