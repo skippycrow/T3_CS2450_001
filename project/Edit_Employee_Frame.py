@@ -274,7 +274,7 @@ class EditEmployee(tk.Frame):
         self.controller.database.set_employee_data(e_id, 'email', self.edit_email_entry.get())
         self.controller.database.set_employee_data(e_id, 'pay_method', method)
         self.controller.database.set_employee_data(e_id, 'routing_number', self.edit_routing_number_entry.get())
-        self.controller.database.set_employee_data(e_id, 'Account', self.edit_account_number_entry.get())
+        self.controller.database.set_employee_data(e_id, 'account', self.edit_account_number_entry.get())
 
         #If user is an admin
         if self.controller.app_data["LoginFrame_permission"] == "Admin":

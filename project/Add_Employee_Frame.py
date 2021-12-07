@@ -228,7 +228,7 @@ class AddEmployee(tk.Frame):
         self.controller.database.set_employee_data(e_id, 'hourly', self.add_hourly_entry.get())
         self.controller.database.set_employee_data(e_id, 'commission_rate', self.add_comm_entry.get())
         self.controller.database.set_employee_data(e_id, 'routing_number', self.add_routing_number_entry.get())
-        self.controller.database.set_employee_data(e_id, 'Account', self.add_account_number_entry.get())
+        self.controller.database.set_employee_data(e_id, 'account', self.add_account_number_entry.get())
         self.controller.database.set_employee_data(e_id, 'social_security', self.add_ss_entry.get())
         self.controller.database.set_employee_data(e_id, 'birthday', self.add_dob_entry.get())
         self.controller.database.set_employee_data(e_id, 'start_date', self.add_start_date_entry.get())
