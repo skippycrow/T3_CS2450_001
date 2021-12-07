@@ -2,7 +2,7 @@
 
 The `auth` library has two helper functions:
 
-* `read_auth_data(path, with_debug=True)`
+* `read_auth_data(path, with_debug=False)`
     Loads a csv file at `path`, and read in the data
     
     The csv file should have two columns, titled `id` and `pw_hash`

@@ -7,7 +7,7 @@ ID_NOT_FOUND = 2
 
 passwords = {}
 
-def read_auth_data(path, with_debug=True):
+def read_auth_data(path, with_debug=False):
     global passwords
     if with_debug:
         passwords['debug'] = md5('debug'.encode()).hexdigest()
