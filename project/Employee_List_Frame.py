@@ -52,7 +52,7 @@ class EmployeeList(tk.Frame):
             #Style page
             self.add_employee_button = tk.Button(self, text = "Add Employee", width = 20, bg = "white", command = lambda: self.controller.present_frame("AddEmployee"))
             self.add_employee_button.grid(row = 4, column = 1, sticky = tk.NW)
-            self.payroll_button = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = lambda: PR.pay_roll(controller.database))
+            self.payroll_button = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = lambda: PR.pay_roll(self.controller.database))
             self.payroll_button.grid(row = 4, column = 1, sticky = tk.E)
             self.export_employee_button = tk.Button(self, text = "Export Employee", width = 20, bg = "white", command = self.clicked_export)
             self.export_employee_button.grid(row = 5, column = 1, sticky = tk.E)
