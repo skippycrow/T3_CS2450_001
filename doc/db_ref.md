@@ -77,7 +77,7 @@ Data Fields:
 
 * `routing_number`
 
-* `Account`
+* `account`
 
 * `social_security`
 
