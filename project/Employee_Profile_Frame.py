@@ -24,6 +24,10 @@ class EmployeeProfile(tk.Frame):
             #Set employee to present as the currently logged in user
             self.e_id_to_present = self.controller.app_data["LoginFrame_userID"]
 
+        #Dictionaries to translate employee classification/pay type
+        self.class_map = {"1":"Salary", "2":"Hourly", "3":"Commision"}
+        self.pay_map = {"1":"ACH", "2":"Mail"}
+        
         #Get employee to present data
         self.name = self.controller.database.get_employee_data(self.e_id_to_present, "name_first") + " " + self.controller.database.get_employee_data(self.e_id_to_present, "name_last")
         self.title = self.controller.database.get_employee_data(self.e_id_to_present, "title")
@@ -66,12 +70,17 @@ class EmployeeProfile(tk.Frame):
             #Style frame with permission widgets
             tk.Label(self, text = ' ').grid(row = 7, column = 1, sticky = tk.W)
             tk.Label(self, text = "Address: " + str(self.address)).grid(row = 8, column = 1, sticky = tk.W)
-            tk.Label(self, text = "Employee Classification: " + str(self.classification)).grid(row = 9, column = 1, sticky = tk.W)
-            tk.Label(self, text = "Pay Method: " + str(self.pay_method)).grid(row = 10, column = 1, sticky = tk.W)
-            tk.Label(self, text = "Salary: " + str(self.salary)).grid(row = 10, column = 2, sticky = tk.W)
-            tk.Label(self, text = "Hourly: " + str(self.hourly)).grid(row = 10, column = 3, sticky = tk.W)
-            tk.Label(self, text = "Commission: " + str(self.commission)).grid(row = 10, column = 4, sticky = tk.W)
-            tk.Label(self, text = "Routing#: " + str(self.routing) + " " + "Account#: " + str(self.account)).grid(row = 11, column = 1, sticky = tk.W)
+            tk.Label(self, text = "Pay Type: " + self.class_map[self.classification]).grid(row = 9, column = 1, sticky = tk.W)
+            tk.Label(self, text = "Pay Method: " + self.pay_map[self.pay_method]).grid(row = 10, column = 1, sticky = tk.W)
+            if self.classification == "1" or self.classification == "3":
+                tk.Label(self, text = "Salary Amount: " + str(self.salary)).grid(row = 10, column = 2, sticky = tk.W)
+            if self.classification == "2":
+                tk.Label(self, text = "Hourly Rate: " + str(self.hourly)).grid(row = 10, column = 2, sticky = tk.W)
+            if self.classification == "3":
+                tk.Label(self, text = "Commission Rate: " + str(self.commission)).grid(row = 10, column = 4, sticky = tk.W)
+            if self.pay_method == "1":
+                tk.Label(self, text = "Routing#: " + str(self.routing)).grid(row = 11, column = 1, sticky = tk.W)
+                tk.Label(self, text = "Account#: " + str(self.account)).grid(row = 11, column = 2, sticky = tk.W)
             tk.Button(self, text = "Edit Employee", command = lambda: self.controller.present_frame("EditEmployee")).grid(row = 21, column = 2)
 
             #Set weight to surrounding row/col to center content on frame
