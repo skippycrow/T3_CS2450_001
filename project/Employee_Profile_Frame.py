@@ -27,7 +27,7 @@ class EmployeeProfile(tk.Frame):
         #Dictionaries to translate employee classification/pay type
         self.class_map = {"1":"Salary", "2":"Hourly", "3":"Commision"}
         self.pay_map = {"1":"ACH", "2":"Mail"}
-        
+
         #Get employee to present data
         self.name = self.controller.database.get_employee_data(self.e_id_to_present, "name_first") + " " + self.controller.database.get_employee_data(self.e_id_to_present, "name_last")
         self.title = self.controller.database.get_employee_data(self.e_id_to_present, "title")
@@ -70,8 +70,8 @@ class EmployeeProfile(tk.Frame):
             #Style frame with permission widgets
             tk.Label(self, text = ' ').grid(row = 7, column = 1, sticky = tk.W)
             tk.Label(self, text = "Address: " + str(self.address)).grid(row = 8, column = 1, sticky = tk.W)
-            tk.Label(self, text = "Pay Type: " + self.class_map[self.classification]).grid(row = 9, column = 1, sticky = tk.W)
-            tk.Label(self, text = "Pay Method: " + self.pay_map[self.pay_method]).grid(row = 10, column = 1, sticky = tk.W)
+            tk.Label(self, text = "Pay Type: " + self.class_map[str(self.classification)]).grid(row = 9, column = 1, sticky = tk.W)
+            tk.Label(self, text = "Pay Method: " + self.pay_map[str(self.pay_method)]).grid(row = 10, column = 1, sticky = tk.W)
             if self.classification == "1" or self.classification == "3":
                 tk.Label(self, text = "Salary Amount: " + str(self.salary)).grid(row = 10, column = 2, sticky = tk.W)
             if self.classification == "2":
