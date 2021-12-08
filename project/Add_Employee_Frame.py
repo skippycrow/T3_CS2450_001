@@ -16,7 +16,7 @@ class AddEmployee(tk.Frame):
 
         #Style frame
         self.title_label = tk.Label(self, text = "Add Employee")
-        self.title_label.grid(row  =1, columnspan = 6, pady = 10, sticky = tk.N)
+        self.title_label.grid(row = 1, columnspan = 6, pady = 10, sticky = tk.N)
         #Emp Id
         self.add_emp_id_label = tk.Label(self, text = "ID:")
         self.add_emp_id_label.grid(row = 2, column = 1, pady = 5, sticky = tk.W)
@@ -149,14 +149,34 @@ class AddEmployee(tk.Frame):
         self.cancel_button = tk.Button(self, text = "Cancel", command = lambda: self.controller.present_frame("EmployeeList"))
         self.cancel_button.grid(row = 10, column = 1)
 
-        #Set weight to surrounding row/col to center buttons on frame
+        #Set weight to surrounding row/col to center content on frame
         self.grid_rowconfigure(0, weight = 1)
         self.grid_rowconfigure(10, weight = 1)
         self.grid_columnconfigure(0, weight = 1)
         self.grid_columnconfigure(6, weight = 1)
 
     def update(self):
-        pass
+        #Clear entry boxes
+        self.add_emp_id_entry.delete(0, tk.END)
+        self.add_first_name_entry.delete(0, tk.END)
+        self.add_last_name_entry.delete(0, tk.END)
+        self.add_street_entry.delete(0, tk.END)
+        self.add_city_entry.delete(0, tk.END)
+        self.add_state_entry.delete(0, tk.END)
+        self.add_zip_entry.delete(0, tk.END)
+        self.add_phone_entry.delete(0, tk.END)
+        self.add_email_entry.delete(0, tk.END)
+        self.add_routing_number_entry.delete(0, tk.END)
+        self.add_account_number_entry.delete(0, tk.END)
+        self.add_salary_entry.delete(0, tk.END)
+        self.add_hourly_entry.delete(0, tk.END)
+        self.add_comm_entry.delete(0, tk.END)
+        self.add_ss_entry.delete(0, tk.END)
+        self.add_dob_entry.delete(0, tk.END)
+        self.add_start_date_entry.delete(0, tk.END)
+        self.add_end_date_entry.delete(0, tk.END)
+        self.add_title_entry.delete(0, tk.END)
+        self.add_dept_entry.delete(0, tk.END)
 
     def show_hide_bank(self, *args):
         """Shows or hide the values for Direct Deposit based on input"""
