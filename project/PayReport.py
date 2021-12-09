@@ -73,7 +73,7 @@ class PayReport:
             pay_string = 'Hours: {0:.2f}, Pay: {1:.2f}'.format(self.get_total_hours(), self.get_total_hourly_pay())
         else:
             pay_string = 'Salary: {0:.2f}'.format(self.get_salary())
-        info_string = 'ID: {0}, Name: {1}, {2}'.format(self.e_id, self.get_name(), pay_string)
+        info_string = 'ID: {0}, Name: {1}, {2}'.format(self.e_id, self.get_name(), pay_string, self.get_pay_method())
         return info_string
 
 def pay_roll(data):
