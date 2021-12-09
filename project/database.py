@@ -137,7 +137,7 @@ class EmployeeDatabase:
 
 class Employee:
     """class for single Employee data
-    should primarily be manmaged via containing EmployeeDatabase"""
+    should primarily be managed via containing EmployeeDatabase"""
 
     def __init__(self, e_id):
         self.id = e_id # do **NOT** set this in any other place
