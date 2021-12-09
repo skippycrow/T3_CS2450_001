@@ -39,6 +39,8 @@ class EmployeeDatabase:
         # id as key, Employee object as value
         self.employees = {}
 
+        self.log = []
+
     def save_to_file(self, path):
         """saves data to csv file at path"""
         with open(path, mode='w') as csv_file:
@@ -50,6 +52,11 @@ class EmployeeDatabase:
                 for field in DATA_FIELDS:
                     row[field] = getattr(employee, field)
                 writer.writerow(row)
+
+    def dump_log(self, path):
+        with open(path, mode='w') as log_file:
+            for line in self.log:
+                log_file.write(line)
 
     def load_from_file(self, path):
         """reads data from csv file at path"""
@@ -74,6 +81,7 @@ class EmployeeDatabase:
                 If this is intended, pass in True for override_existing''')
 
         self.employees[e_id] = Employee(e_id)
+        self.log.append(f'Added employee {e_id}')
         return self.employees[e_id]
 
     def get_employee(self, e_id):
@@ -98,6 +106,7 @@ class EmployeeDatabase:
             raise IndexError('id not found in employee database')
 
         setattr(self.employees[e_id], field, value)
+        self.log.append(f'Set {field} of Employee {e_id} to {value}')
 
     def get_employee_data(self, e_id, field):
         """returns the field property of employee with given id"""

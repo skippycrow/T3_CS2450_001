@@ -41,6 +41,10 @@
 
 * `read_receipt_data(path)`
 
+* `dump_log(path)`
+
+    dumps log data in to file at `path`
+
 #### `Employee` class
 
 * `get_full_name()`
