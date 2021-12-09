@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox as msg
+import auth
 
 class AddEmployee(tk.Frame):
     def __init__(self, parent, controller):
@@ -117,6 +118,11 @@ class AddEmployee(tk.Frame):
         self.add_dob_label.grid(row = 7, column = 3, pady = 5, sticky = tk.W)
         self.add_dob_entry = tk.Entry(self, width = 15, bg = "white")
         self.add_dob_entry.grid(row = 7, column = 4)
+        #Password
+        self.add_password_label = tk.Label(self, text = "Password:")
+        self.add_password_label.grid(row = 7, column = 5, pady = 5, sticky = tk.W)
+        self.add_password_entry = tk.Entry(self, width = 15, bg = "white")
+        self.add_password_entry.grid(row = 7, column = 6)
         #Start Date
         self.add_start_date_label = tk.Label(self, text = "Start Date:")
         self.add_start_date_label.grid(row = 8, column = 1, pady = 5, sticky = tk.W)
@@ -257,6 +263,10 @@ class AddEmployee(tk.Frame):
         self.controller.database.set_employee_data(e_id, 'dept', self.add_dept_entry.get())
         self.controller.database.set_employee_data(e_id, 'email', self.add_email_entry.get())
         self.controller.database.set_employee_data(e_id, 'end_date', self.add_end_date_entry.get())
+
+        #If password box is not empty
+        if self.add_password_entry.get() != "":
+            auth.add_password(e_id, self.add_password_entry.get())
 
         #Show saved message
         msg.showinfo(title="Saved", message="Employee Added")
