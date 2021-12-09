@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox as msg
+import auth
 
 class EditEmployee(tk.Frame):
     def __init__(self, parent, controller):
@@ -108,6 +109,10 @@ class EditEmployee(tk.Frame):
         #If not admin
         if not self.controller.app_data["LoginFrame_permission"] == "Admin":
             #Style frame
+            self.edit_password_label = tk.Label(self, text = "Update Password:")
+            self.edit_password_label.grid(row = 6, column = 5)
+            self.edit_password_entry = tk.Entry(self, width = 15, bg = "white")
+            self.edit_password_entry.grid(row = 6, column = 6)
             self.submit_button = tk.Button(self, text = "Submit", command = self.save_info)
             self.submit_button.grid(row = 6, column = 2, pady = 15)
             self.cancel_button = tk.Button(self, text = "Cancel", command = lambda: self.controller.present_frame("EmployeeProfile"))
@@ -160,6 +165,11 @@ class EditEmployee(tk.Frame):
             self.edit_dob_entry = tk.Entry(self, width = 15, bg = "white")
             self.edit_dob_entry.grid(row = 7, column = 4)
             self.edit_dob_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "birthday")))
+            #Password
+            self.edit_password_label = tk.Label(self, text = "Update Password:")
+            self.edit_password_label.grid(row = 7, column = 5, pady = 5, sticky = tk.W)
+            self.edit_password_entry = tk.Entry(self, width = 15, bg = "white")
+            self.edit_password_entry.grid(row = 7, column = 6)
             #Start Date
             self.edit_start_date_label = tk.Label(self, text = "Start Date:")
             self.edit_start_date_label.grid(row = 8, column = 1, pady = 5, sticky = tk.W)
@@ -275,6 +285,10 @@ class EditEmployee(tk.Frame):
         self.controller.database.set_employee_data(e_id, 'pay_method', method)
         self.controller.database.set_employee_data(e_id, 'routing_number', self.edit_routing_number_entry.get())
         self.controller.database.set_employee_data(e_id, 'account', self.edit_account_number_entry.get())
+        
+        #If password box is not empty
+        if self.edit_password_entry.get() != "":
+            auth.edit_password(e_id, self.edit_password_entry.get())
 
         #If user is an admin
         if self.controller.app_data["LoginFrame_permission"] == "Admin":
