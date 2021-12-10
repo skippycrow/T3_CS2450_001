@@ -14,11 +14,20 @@ class PayReport:
         self.e_id = e_id
 
     # Get Inforation from csv and database
+    def get_bank_info(self):
+        return "R.N: {0} A.N: {1}".format(self.data.get_employee_data(self.e_id,'routing_number'), self.data.get_employee_data(self.e_id,'account'))
+
+    def get_address_info(self):
+        return "Str: {0} City: {1} State: {2} Zip: {3}".format(self.data.get_employee_data(self.e_id, 'address_street'),self.data.get_employee_data(self.e_id, 'address_city'),self.data.get_employee_data(self.e_id,'address_state'),self.data.get_employee_data(self.e_id,'zip_code'))
+
     def get_name (self): # Gets the name of this employee
         return self.data.get_employee(self.e_id).get_full_name()
 
     def get_pay_method (self): # Gets the pay method for this employee
         return self.data.get_employee_data(self.e_id, 'pay_method')
+
+    def get_classification (self): # Gets the pay method for this employee
+        return self.data.get_employee_data(self.e_id, 'classification')
 
     def get_salary (self): # Gets the employee's salary
         return float(self.data.get_employee_data(self.e_id, 'salary'))
@@ -36,7 +45,7 @@ class PayReport:
         return self.data.get_employee(self.e_id).receipt_data
 
     def get_commission_rate (self): # Gets commission rate of this employee
-        return self.data.get_employee_data(self.e_id, 'comission_rate')
+        return float(self.data.get_employee_data(self.e_id, 'commission_rate'));
 
     # Calculate hours
     def get_overtime_hours(self): # Gets overtime hours
@@ -63,17 +72,23 @@ class PayReport:
     def get_commission_pay(self): # Gets the payment from commissions
         total = 0
         for commission in self.get_receipts():
-            total += commission * (self.get_commission_rate/100)
+            total += commission * (self.get_commission_rate()/100)
         return total
 
     # Object to String conversion
     def __str__(self): # Convert PayReport object to string listing all the necessary details for the pay report.
         pay_string = ""
-        if self.get_pay_method() == '1':
+        if self.get_classification() == '1':
             pay_string = 'Hours: {0:.2f}, Pay: {1:.2f}'.format(self.get_total_hours(), self.get_total_hourly_pay())
+        elif self.get_classification() == '2':
+            pay_string = 'Salary: {0:.2f}'.format(self.get_salary()/12)
         else:
-            pay_string = 'Salary: {0:.2f}'.format(self.get_salary())
-        info_string = 'ID: {0}, Name: {1}, {2}'.format(self.e_id, self.get_name(), pay_string, self.get_pay_method())
+            pay_string = 'Salary: {0:.2f}, Commision: {1:.2f}, Pay: {2:.2f}'.format(self.get_salary()/12, self.get_commission_pay(), self.get_commission_pay() + self.get_salary()/12)
+
+        if self.pay_method() == '1':
+            info_string = 'ID: {0}, Name: {1}, {2}, Deposited To: {3}'.format(self.e_id, self.get_name(), self.pay_string, self.get_bank_info())
+        else:
+            info_string = 'ID: {0}, Name: {1}, {2}, Mailed To: {3}'.format(self.e_id, self.get_name(), self.pay_string, self.get_bank_info())
         return info_string
 
 def pay_roll(data):
