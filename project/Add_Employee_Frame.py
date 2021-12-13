@@ -265,7 +265,7 @@ class AddEmployee(tk.Frame):
         self.controller.database.set_employee_data(e_id, 'end_date', self.add_end_date_entry.get())
 
         auth.add_password(e_id, self.add_password_entry.get())
-        auth.resave_cache("Resources/passwords.csv")
+        auth.resave_cache("project/Resources/passwords.csv")
 
         #Show saved message
         msg.showinfo(title="Saved", message="Employee Added")

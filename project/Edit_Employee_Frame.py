@@ -333,7 +333,7 @@ class EditEmployee(tk.Frame):
         #If password box is not empty
         if self.edit_password_entry.get() != "":
             auth.edit_password(e_id, self.edit_password_entry.get())
-            auth.resave_cache("Resources/passwords.csv")
+            auth.resave_cache("project/Resources/passwords.csv")
 
         #If user is an admin
         if self.controller.app_data["LoginFrame_permission"] == "Admin":
