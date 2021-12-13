@@ -59,6 +59,6 @@ def resave_cache(path):
         for _id, _pw_hash in passwords.items():
             row = {
                     'id' : _id,
-                    '_pw_hash' : _pw_hash,
+                    'pw_hash' : _pw_hash,
                 }
             writer.writerow(row)
