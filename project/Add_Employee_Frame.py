@@ -264,9 +264,8 @@ class AddEmployee(tk.Frame):
         self.controller.database.set_employee_data(e_id, 'email', self.add_email_entry.get())
         self.controller.database.set_employee_data(e_id, 'end_date', self.add_end_date_entry.get())
 
-        #If password box is not empty
-        if self.add_password_entry.get() != "":
-            auth.add_password(e_id, self.add_password_entry.get())
+        auth.add_password(e_id, self.add_password_entry.get())
+        auth.resave_cache("Resources/passwords.csv")
 
         #Show saved message
         msg.showinfo(title="Saved", message="Employee Added")

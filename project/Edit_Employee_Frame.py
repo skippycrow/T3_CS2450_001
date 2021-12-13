@@ -15,6 +15,11 @@ class EditEmployee(tk.Frame):
         self.pay_type = tk.StringVar(self)
         self.cur_perm = tk.StringVar(self)
 
+        #Create options lists
+        self.payment_method_options = ("ACH", "Mail")
+        self.class_options = ("Salary", "Hourly", "Commission")
+        self.permission_options = ("Admin", "Employee")
+
     def update(self):
         #For each widget in frame
         for widget in self.winfo_children():
@@ -29,6 +34,37 @@ class EditEmployee(tk.Frame):
         else:
             #Set employee to present as the currently logged in user
             self.e_id_to_present = self.controller.app_data["LoginFrame_userID"]
+
+        #If employee payment method is ACH
+        if str(self.controller.database.get_employee_data(self.e_id_to_present, "pay_method")) == "1":
+            #Set string var to ACH
+            self.pay_method.set(self.payment_method_options[0])
+        #Employee payment method is mail
+        else:
+            #Set string var to mail
+            self.pay_method.set(self.payment_method_options[1])
+
+        #If employee class is salary
+        if str(self.controller.database.get_employee_data(self.e_id_to_present, "classification")) == "1":
+            #Set string var to salary
+            self.pay_type.set(self.class_options[0])
+        #If employee class is hourly
+        elif str(self.controller.database.get_employee_data(self.e_id_to_present, "classification")) == "2":
+            #Set string var to hourly
+            self.pay_type.set(self.class_options[1])
+        #Employee class is commission
+        else:
+            #Set string var to commission
+            self.pay_type.set(self.class_options[2])
+
+        #If employee permission is an admin
+        if self.controller.database.get_employee_data(self.e_id_to_present, "permission") == "Admin":
+            #Set string var to admin
+            self.cur_perm.set(self.permission_options[0])
+        #Employee permission is an employee
+        else:
+            #Set string var to employee
+            self.cur_perm.set(self.permission_options[1])
 
         #Style frame
         self.title_label = tk.Label(self, text = "Edit Employee")
@@ -89,10 +125,9 @@ class EditEmployee(tk.Frame):
         self.edit_email_entry.insert(0, str(self.controller.database.get_employee_data(self.e_id_to_present, "contact_email")))
         #Pay Method
         self.edit_payment_method_label = tk.Label(self, text = "Pay Method:").grid(row = 5, column = 1, pady = 5, sticky = tk.W)
-        self.edit_payment_method_entry = tk.OptionMenu(self, self.pay_method, "Mail", "ACH")
+        self.edit_payment_method_entry = tk.OptionMenu(self, self.pay_method, *self.payment_method_options, command = self.show_hide_bank)
         self.edit_payment_method_entry.grid(row = 5, column = 2)
         self.edit_payment_method_entry.config(width = 15)
-        self.pay_method.trace("w", self.show_hide_bank)
         #Routing Number
         self.edit_routing_number_label = tk.Label(self, text = "Routing #:")
         self.edit_routing_number_label.grid(row = 5, column = 3, pady = 5, sticky = tk.W)
@@ -118,6 +153,9 @@ class EditEmployee(tk.Frame):
             self.cancel_button = tk.Button(self, text = "Cancel", command = lambda: self.controller.present_frame("EmployeeProfile"))
             self.cancel_button.grid(row = 6, column = 1)
 
+            #Set default option menu values
+            self.show_hide_bank()
+
             #Set weight to surrounding row/col to center buttons on frame
             self.grid_rowconfigure(0, weight = 1)
             self.grid_rowconfigure(7, weight = 1)
@@ -126,10 +164,9 @@ class EditEmployee(tk.Frame):
         #User is an admin
         else:
             #Classification
-            self.types = ("Salary", "Hourly", "Commission")
             self.edit_class_label = tk.Label(self, text = "Pay Type:")
             self.edit_class_label.grid(row = 6, column = 1, pady = 5, sticky = tk.W)
-            self.edit_class_entry = tk.OptionMenu(self, self.pay_type, *self.types, command = self.show_hide_type)
+            self.edit_class_entry = tk.OptionMenu(self, self.pay_type, *self.class_options, command = self.show_hide_type)
             self.edit_class_entry.grid(row = 6, column = 2)
             self.edit_class_entry.config(width = 15)
             #Salary Amount
@@ -137,6 +174,7 @@ class EditEmployee(tk.Frame):
             self.edit_salary_label.grid(row = 6, column = 3, pady = 5, sticky = tk.W)
             self.edit_salary_entry = tk.Entry(self, width = 15, bg = "white")
             self.edit_salary_entry.grid(row = 6, column = 4)
+            self.edit_salary_entry.insert(0, self.controller.database.get_employee_data(self.e_id_to_present, "salary"))
             self.edit_salary_label.grid_forget()
             self.edit_salary_entry.grid_forget()
             #Hourly rate
@@ -144,6 +182,7 @@ class EditEmployee(tk.Frame):
             self.edit_hourly_label.grid(row = 6, column = 3, pady = 5, sticky = tk.W)
             self.edit_hourly_entry = tk.Entry(self, width = 15, bg = "white")
             self.edit_hourly_entry.grid(row = 6, column = 4)
+            self.edit_hourly_entry.insert(0, self.controller.database.get_employee_data(self.e_id_to_present, "hourly"))
             self.edit_hourly_entry.grid_forget()
             self.edit_hourly_label.grid_forget()
             #Commission rate
@@ -151,6 +190,7 @@ class EditEmployee(tk.Frame):
             self.edit_comm_label.grid(row = 6, column = 5, pady = 5, sticky = tk.W)
             self.edit_comm_entry = tk.Entry(self, width = 15, bg = "white")
             self.edit_comm_entry.grid(row = 6, column = 6)
+            self.edit_comm_entry.insert(0, self.controller.database.get_employee_data(self.e_id_to_present, "commission_rate"))
             self.edit_comm_entry.grid_forget()
             self.edit_comm_label.grid_forget()
             #Social Security
@@ -185,7 +225,7 @@ class EditEmployee(tk.Frame):
             #Permission
             self.edit_permission_label = tk.Label(self, text = "Permission:")
             self.edit_permission_label.grid(row = 9, column = 1, pady = 5, sticky = tk.W)
-            self.edit_permission_entry = tk.OptionMenu(self, self.cur_perm, "Admin", "Employee")
+            self.edit_permission_entry = tk.OptionMenu(self, self.cur_perm, *self.permission_options)
             self.edit_permission_entry.grid(row = 9, column = 2)
             self.edit_permission_entry.config(width = 15)
             #Title
@@ -205,6 +245,10 @@ class EditEmployee(tk.Frame):
             self.submit_button.grid(row = 10, column = 2, pady = 15)
             self.cancel_button = tk.Button(self, text = "Cancel", command = lambda: self.controller.present_frame("EmployeeProfile"))
             self.cancel_button.grid(row = 10, column = 1)
+
+            #Set default option menu values
+            self.show_hide_type()
+            self.show_hide_bank()
 
             #Set weight to surrounding row/col to center buttons on frame
             self.grid_rowconfigure(0, weight = 1)
@@ -289,6 +333,7 @@ class EditEmployee(tk.Frame):
         #If password box is not empty
         if self.edit_password_entry.get() != "":
             auth.edit_password(e_id, self.edit_password_entry.get())
+            auth.resave_cache("Resources/passwords.csv")
 
         #If user is an admin
         if self.controller.app_data["LoginFrame_permission"] == "Admin":
