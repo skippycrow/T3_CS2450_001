@@ -243,7 +243,7 @@ class AddEmployee(tk.Frame):
         self.controller.database.set_employee_data(e_id, 'name_first', self.add_first_name_entry.get())
         self.controller.database.set_employee_data(e_id, 'name_last', self.add_last_name_entry.get())
         self.controller.database.set_employee_data(e_id, 'contact_phone', self.add_phone_entry.get())
-        self.controller.database.set_employee_data(e_id, 'contact_email', "email")
+        self.controller.database.set_employee_data(e_id, 'contact_email', self.add_email_entry.get())
         self.controller.database.set_employee_data(e_id, 'address_street', self.add_street_entry.get())
         self.controller.database.set_employee_data(e_id, 'address_city', self.add_city_entry.get())
         self.controller.database.set_employee_data(e_id, 'address_state', self.add_state_entry.get())
