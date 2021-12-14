@@ -75,6 +75,7 @@ class PayReport:
             total += commission * (self.get_commission_rate()/100)
         return total
 
+    #
     # Object to String conversion
     def __str__(self): # Convert PayReport object to string listing all the necessary details for the pay report.
         pay_string = ""
