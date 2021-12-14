@@ -79,16 +79,16 @@ class PayReport:
     def __str__(self): # Convert PayReport object to string listing all the necessary details for the pay report.
         pay_string = ""
         if self.get_classification() == '1':
-            pay_string = 'Hours: {0:.2f}, Pay: {1:.2f}'.format(self.get_total_hours(), self.get_total_hourly_pay())
-        elif self.get_classification() == '2':
             pay_string = 'Salary: {0:.2f}'.format(self.get_salary()/12)
+        elif self.get_classification() == '2':
+            pay_string = 'Hours: {0:.2f}, Pay: {1:.2f}'.format(self.get_total_hours(), self.get_total_hourly_pay())
         else:
             pay_string = 'Salary: {0:.2f}, Commision: {1:.2f}, Pay: {2:.2f}'.format(self.get_salary()/12, self.get_commission_pay(), self.get_commission_pay() + self.get_salary()/12)
 
-        if self.pay_method() == '1':
-            info_string = 'ID: {0}, Name: {1}, {2}, Deposited To: {3}'.format(self.e_id, self.get_name(), self.pay_string, self.get_bank_info())
+        if self.get_pay_method() == '1':
+            info_string = 'ID: {0}, Name: {1}, {2}, Deposited To: {3}'.format(self.e_id, self.get_name(), pay_string, self.get_bank_info())
         else:
-            info_string = 'ID: {0}, Name: {1}, {2}, Mailed To: {3}'.format(self.e_id, self.get_name(), self.pay_string, self.get_bank_info())
+            info_string = 'ID: {0}, Name: {1}, {2}, Mailed To: {3}'.format(self.e_id, self.get_name(), pay_string, self.get_bank_info())
         return info_string
 
 def pay_roll(data):
