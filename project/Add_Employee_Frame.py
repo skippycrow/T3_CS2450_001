@@ -260,7 +260,7 @@ class AddEmployee(tk.Frame):
         self.controller.database.set_employee_data(e_id, 'social_security', self.add_ss_entry.get())
         self.controller.database.set_employee_data(e_id, 'birthday', self.add_dob_entry.get())
         self.controller.database.set_employee_data(e_id, 'start_date', self.add_start_date_entry.get())
-        self.controller.database.set_employee_data(e_id, 'permission', self.cur_perm)
+        self.controller.database.set_employee_data(e_id, 'permission', self.cur_perm.get())
         self.controller.database.set_employee_data(e_id, 'title', self.add_title_entry.get())
         self.controller.database.set_employee_data(e_id, 'dept', self.add_dept_entry.get())
         self.controller.database.set_employee_data(e_id, 'email', self.add_email_entry.get())
