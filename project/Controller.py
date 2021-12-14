@@ -20,7 +20,8 @@ class EmployeeApp(tk.Tk):
             self.database.load_from_file(os.getcwd() + "/Resources/employees.csv")
         if os.path.exists(os.getcwd() + "/project/Resources/employees.csv"):
             self.database.load_from_file(os.getcwd() + "/project/Resources/employees.csv")
-
+        
+        ##### Needed for Payreport #####
         #Read reciept
         if os.path.exists(os.getcwd() + "/Resources/receipts.csv"):
             self.database.read_receipt_data("Resources/receipts.csv")
@@ -29,6 +30,7 @@ class EmployeeApp(tk.Tk):
             self.database.read_timecard_data("Resources/timecards.csv")
         else: print("file doesn't exist")
         #Read timecard
+        #####
 
         #Initialize container
         container = tk.Frame(self)
