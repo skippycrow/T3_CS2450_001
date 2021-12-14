@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter.ttk import *
 from tkinter import messagebox
+import os
+import os.path
 from database import Employee
 from database import EmployeeDatabase
 from datetime import date
@@ -93,7 +95,11 @@ class PayReport:
         return info_string
 
 def pay_roll(data):
-    reptx = open('Resources/PayReport.txt', 'a')
+    if os.path.exists(os.getcwd() + "/Resources/employees.csv"):
+        reptx = open(os.getcwd() + '/Resources/PayReport.txt', 'a')
+    if os.path.exists(os.getcwd() + "/project/Resources/employees.csv"):
+        reptx = open(os.getcwd() + '/project/Resources/PayReport.txt', 'a')
+
     reptx.write('\n------------Payreport of: {0}------------\n'.format(date.today()))
     for e_id in data.employees.keys():
         reptx.write(PayReport(e_id, data).__str__() + '\n')
