@@ -54,8 +54,6 @@ class EmployeeList(tk.Frame):
             self.add_employee_button.grid(row = 4, column = 1, sticky = tk.NW)
             self.payroll_button = tk.Button(self, text = "Payroll", width = 20, bg = "white", command = lambda: PR.pay_roll(self.controller.database))
             self.payroll_button.grid(row = 4, column = 1, sticky = tk.E)
-            self.export_employee_button = tk.Button(self, text = "Export Employee", width = 20, bg = "white", command = self.clicked_export)
-            self.export_employee_button.grid(row = 5, column = 1, sticky = tk.E)
 
             #Set weight to surrounding row/col to center content on frame
             self.grid_rowconfigure(0, weight = 1)
@@ -112,12 +110,6 @@ class EmployeeList(tk.Frame):
 
         #Proceed to employee profile
         self.controller.present_frame("EmployeeProfile")
-
-    def clicked_export(self):
-        #Proceed to export employee frame
-        #self.controller.present_frame("ExportEmployee")
-        #Temporary functionality
-        msg.showinfo("Export", "Employee Exported")
 
     def clicked_back(self):
         #Reset show selected employee flag
