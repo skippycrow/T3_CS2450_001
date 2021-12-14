@@ -273,6 +273,12 @@ class AddEmployee(tk.Frame):
             auth.resave_cache(os.getcwd() + "/Resources/passwords.csv")
         if os.path.exists(os.getcwd() + "/project/Resources/passwords.csv"):
             auth.resave_cache(os.getcwd() + "/project/Resources/passwords.csv")
+        
+        # Save EmployeeDatabase
+        if os.path.exists(os.getcwd() + "/Resources/employees.csv"):
+            self.controller.database.save_to_file(os.getcwd() + "/Resources/employees.csv")
+        if os.path.exists(os.getcwd() + "/project/Resources/employees.csv"):
+            self.controller.database.save_to_file(os.getcwd() + "/project/Resources/employees.csv")
 
         #Show saved message
         msg.showinfo(title="Saved", message="Employee Added")
