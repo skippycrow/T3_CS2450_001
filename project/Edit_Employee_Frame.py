@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox as msg
+import os
+import os.path
 import auth
 
 class EditEmployee(tk.Frame):
@@ -324,16 +326,11 @@ class EditEmployee(tk.Frame):
         self.controller.database.set_employee_data(e_id, 'address_state', self.edit_state_entry.get())
         self.controller.database.set_employee_data(e_id, 'zip_code', self.edit_zip_entry.get())
         self.controller.database.set_employee_data(e_id, 'contact_phone', self.edit_phone_entry.get())
-        self.controller.database.set_employee_data(e_id, 'contact_email', "email")
+        self.controller.database.set_employee_data(e_id, 'contact_email', self.edit_email_entry.get())
         self.controller.database.set_employee_data(e_id, 'email', self.edit_email_entry.get())
         self.controller.database.set_employee_data(e_id, 'pay_method', method)
         self.controller.database.set_employee_data(e_id, 'routing_number', self.edit_routing_number_entry.get())
         self.controller.database.set_employee_data(e_id, 'account', self.edit_account_number_entry.get())
-        
-        #If password box is not empty
-        if self.edit_password_entry.get() != "":
-            auth.edit_password(e_id, self.edit_password_entry.get())
-            auth.resave_cache("Resources/passwords.csv")
 
         #If user is an admin
         if self.controller.app_data["LoginFrame_permission"] == "Admin":
@@ -345,10 +342,20 @@ class EditEmployee(tk.Frame):
             self.controller.database.set_employee_data(e_id, 'social_security', self.edit_ss_entry.get())
             self.controller.database.set_employee_data(e_id, 'birthday', self.edit_dob_entry.get())
             self.controller.database.set_employee_data(e_id, 'start_date', self.edit_start_date_entry.get())
-            self.controller.database.set_employee_data(e_id, 'permission', self.cur_perm)
+            self.controller.database.set_employee_data(e_id, 'permission', self.cur_perm.get())
             self.controller.database.set_employee_data(e_id, 'title', self.edit_title_entry.get())
             self.controller.database.set_employee_data(e_id, 'dept', self.edit_dept_entry.get())
             self.controller.database.set_employee_data(e_id, 'end_date', self.edit_end_date_entry.get())
+
+        #If password box is not empty
+        if self.edit_password_entry.get() != "":
+            #Save password
+            auth.edit_password(e_id, self.edit_password_entry.get())
+            #Save password to csv
+            if os.path.exists(os.getcwd() + "/Resources/passwords.csv"):
+                auth.resave_cache(os.getcwd() + "/Resources/passwords.csv")
+            if os.path.exists(os.getcwd() + "/project/Resources/passwords.csv"):
+                auth.resave_cache(os.getcwd() + "/project/Resources/passwords.csv")
 
         #Show saved message
         msg.showinfo(title = "Saved", message = "Employee saved")
