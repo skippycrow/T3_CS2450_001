@@ -75,6 +75,7 @@ class PayReport:
             total += commission * (self.get_commission_rate()/100)
         return total
 
+    #
     # Object to String conversion
     def __str__(self): # Convert PayReport object to string listing all the necessary details for the pay report.
         pay_string = ""
@@ -88,7 +89,7 @@ class PayReport:
         if self.get_pay_method() == '1':
             info_string = 'ID: {0}, Name: {1}, {2}, Deposited To: {3}'.format(self.e_id, self.get_name(), pay_string, self.get_bank_info())
         else:
-            info_string = 'ID: {0}, Name: {1}, {2}, Mailed To: {3}'.format(self.e_id, self.get_name(), pay_string, self.get_bank_info())
+            info_string = 'ID: {0}, Name: {1}, {2}, Mailed To: {3}'.format(self.e_id, self.get_name(), pay_string, self.get_address_info())
         return info_string
 
 def pay_roll(data):
