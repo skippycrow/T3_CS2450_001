@@ -71,16 +71,14 @@ class EmployeeProfile(tk.Frame):
             tk.Label(self, text = ' ').grid(row = 7, column = 1, sticky = tk.W)
             tk.Label(self, text = "Address: " + str(self.address)).grid(row = 8, column = 1, sticky = tk.W)
             tk.Label(self, text = "Pay Type: " + self.class_map[str(self.classification)]).grid(row = 9, column = 1, sticky = tk.W)
-            #tk.Label(self, text = "Pay Method: " + self.pay_map[str(self.pay_method)]).grid(row = 10, column = 1, sticky = tk.W)
-            if self.classification == "1":
+            if str(self.classification) == "1":
                 tk.Label(self, text = f"Pay Method: {self.pay_map[str(self.pay_method)]}          Salary Amount: " + str(self.salary)).grid(row = 10, column = 1, sticky = tk.W)
-            if self.classification == "2":
+            if str(self.classification) == "2":
                 tk.Label(self, text = f'Pay Method: {self.pay_map[str(self.pay_method)]}          Hourly Rate: ' + str(self.hourly)).grid(row = 10, column = 1, sticky = tk.W)
-            if self.classification == "3":
+            if str(self.classification) == "3":
                 tk.Label(self, text = f"Pay Method: {self.pay_map[str(self.pay_method)]}          Salary Amount: " + str(self.salary) + "        Commission Rate: " + str(self.commission) + "%").grid(row = 10, column = 1, sticky = tk.W)
-            if self.pay_method == "1":
+            if str(self.pay_method) == "1":
                 tk.Label(self, text = "Routing#: " + str(self.routing) + "          Account#: " + str(self.account)).grid(row = 11, column = 1, sticky = tk.W)
-                #tk.Label(self, text = "Account#: " + str(self.account)).grid(row = 11, column = 2, sticky = tk.W)
             tk.Button(self, text = "Edit Employee", command = lambda: self.controller.present_frame("EditEmployee")).grid(row = 21, column = 2)
 
             #Set weight to surrounding row/col to center content on frame

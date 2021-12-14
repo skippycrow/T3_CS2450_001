@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox as msg
+import os
+import os.path
 import auth
 
 class AddEmployee(tk.Frame):
@@ -264,8 +266,13 @@ class AddEmployee(tk.Frame):
         self.controller.database.set_employee_data(e_id, 'email', self.add_email_entry.get())
         self.controller.database.set_employee_data(e_id, 'end_date', self.add_end_date_entry.get())
 
+        #Save password
         auth.add_password(e_id, self.add_password_entry.get())
-        auth.resave_cache("project/Resources/passwords.csv")
+        #Save password to csv
+        if os.path.exists(os.getcwd() + "/Resources/passwords.csv"):
+            auth.resave_cache(os.getcwd() + "/Resources/passwords.csv")
+        if os.path.exists(os.getcwd() + "/project/Resources/passwords.csv"):
+            auth.resave_cache(os.getcwd() + "/project/Resources/passwords.csv")
 
         #Show saved message
         msg.showinfo(title="Saved", message="Employee Added")
